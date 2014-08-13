@@ -1,4 +1,4 @@
-angular.module('starter.controllers', [])
+angular.module('man20-macnuttrk.controllers', [])
 
 .controller('DashCtrl', function($scope) {
 })
@@ -11,5 +11,7 @@ angular.module('starter.controllers', [])
   $scope.friend = Friends.get($stateParams.friendId);
 })
 
-.controller('AccountCtrl', function($scope) {
+.controller('StatsCtrl', function($scope, User) {
+  $scope.stats = User.stats;
+  $scope.user = User;
 });
