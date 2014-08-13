@@ -1,0 +1,24 @@
+2014-08-13 13:12:10.985 Man 2.0 Macronutrient tracker[30801:70b] Multi-tasking -> Device: YES, App: YES
+2014-08-13 13:12:11.017 Man 2.0 Macronutrient tracker[30801:70b] Unlimited access to network resources
+2014-08-13 13:12:11.112 Man 2.0 Macronutrient tracker[30801:70b] [CDVTimer][keyboard] 0.079989ms
+2014-08-13 13:12:11.112 Man 2.0 Macronutrient tracker[30801:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-13 13:12:11.113 Man 2.0 Macronutrient tracker[30801:70b] [CDVTimer][statusbar] 0.465035ms
+2014-08-13 13:12:11.113 Man 2.0 Macronutrient tracker[30801:70b] [CDVTimer][TotalPluginStartup] 1.600027ms
+2014-08-13 13:12:11.233 Man 2.0 Macronutrient tracker[30801:70b] Resetting plugins due to page load.
+2014-08-13 13:12:11.461 Man 2.0 Macronutrient tracker[30801:70b] Finished load of: file:///Users/shawnlauzon/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/06AF8D2E-287F-4442-B8D6-42B530734F46/Man%202.0%20Macronutrient%20tracker.app/www/index.html#/tab/dash
+2014-08-13 13:13:57.704 Man 2.0 Macronutrient tracker[30966:70b] Multi-tasking -> Device: YES, App: YES
+2014-08-13 13:13:57.712 Man 2.0 Macronutrient tracker[30966:70b] Unlimited access to network resources
+2014-08-13 13:13:57.729 Man 2.0 Macronutrient tracker[30966:70b] [CDVTimer][keyboard] 0.060022ms
+2014-08-13 13:13:57.730 Man 2.0 Macronutrient tracker[30966:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-13 13:13:57.730 Man 2.0 Macronutrient tracker[30966:70b] [CDVTimer][statusbar] 0.510037ms
+2014-08-13 13:13:57.731 Man 2.0 Macronutrient tracker[30966:70b] [CDVTimer][TotalPluginStartup] 1.527011ms
+2014-08-13 13:13:57.777 Man 2.0 Macronutrient tracker[30966:70b] Resetting plugins due to page load.
+2014-08-13 13:13:57.900 Man 2.0 Macronutrient tracker[30966:70b] Finished load of: file:///Users/shawnlauzon/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/06AF8D2E-287F-4442-B8D6-42B530734F46/Man%202.0%20Macronutrient%20tracker.app/www/index.html#/tab/dash
+2014-08-13 13:15:10.136 Man 2.0 Macronutrient tracker[31162:70b] Multi-tasking -> Device: YES, App: YES
+2014-08-13 13:15:10.148 Man 2.0 Macronutrient tracker[31162:70b] Unlimited access to network resources
+2014-08-13 13:15:10.175 Man 2.0 Macronutrient tracker[31162:70b] [CDVTimer][keyboard] 0.106990ms
+2014-08-13 13:15:10.175 Man 2.0 Macronutrient tracker[31162:70b] CDVPlugin class CDVStatusBar (pluginName: statusbar) does not exist.
+2014-08-13 13:15:10.176 Man 2.0 Macronutrient tracker[31162:70b] [CDVTimer][statusbar] 0.523984ms
+2014-08-13 13:15:10.176 Man 2.0 Macronutrient tracker[31162:70b] [CDVTimer][TotalPluginStartup] 1.741052ms
+2014-08-13 13:15:10.367 Man 2.0 Macronutrient tracker[31162:70b] Resetting plugins due to page load.
+2014-08-13 13:15:10.709 Man 2.0 Macronutrient tracker[31162:70b] Finished load of: file:///Users/shawnlauzon/Library/Application%20Support/iPhone%20Simulator/7.1/Applications/06AF8D2E-287F-4442-B8D6-42B530734F46/Man%202.0%20Macronutrient%20tracker.app/www/index.html#/tab/dash
