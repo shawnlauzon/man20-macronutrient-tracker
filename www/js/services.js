@@ -1,4 +1,4 @@
-angular.module('starter.services', [])
+angular.module('man20-macnuttrk.services', [])
 
 /**
  * A simple example service that returns some data.
@@ -22,6 +22,38 @@ angular.module('starter.services', [])
     get: function(friendId) {
       // Simple index lookup
       return friends[friendId];
+    }
+  }
+})
+
+.factory('User', function() {
+  var stats = {
+    weight:         100,
+    percentBodyFat: 6.0,
+
+    lbm: function() {
+      return stats.weight * (100 - stats.percentBodyFat) / 100;
+    }
+  };
+
+   return {
+    stats: stats,
+    maintenanceCalories: function() {
+      var maintenanceCaloricIntake = function() {
+        if (stats.percentBodyFat <= 12) {
+          return 17;
+        } else if (stats.percentBodyFat <= 15) {
+          return 16;
+        } else if (stats.percentBodyFat <= 19) {
+          return 15;
+        } else if (stats.percentBodyFat <= 22) {
+          return 14;
+        } else {
+          return 13;
+        }
+      }
+
+      return stats.lbm() * maintenanceCaloricIntake();
     }
   }
 });
