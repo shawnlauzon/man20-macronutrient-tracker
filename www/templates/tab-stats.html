@@ -1,7 +1,6 @@
 <ion-view title="Stats">
   <ion-content class="has-header padding">
-    <h1>Stats</h1>
-    <form id="personal-stats" class="list">
+    <div id="personal-stats" class="list">
       <label class="item item-input">
         <span class="input-label">Current weight</span>
         <input type="number" ng-model="stats.weight"><span class="item-note">pounds</span>
@@ -10,15 +9,18 @@
         <span class="input-label">Current percent body fat</span>
         <input type="number" step="0.1" ng-model="stats.percentBodyFat">%
       </label>
-    </form>
+      <button class="button button-block button-positive" ng-click="storeStats(stats)">
+        Update stats
+      </button>
+    </div>
     <div id="calculated-stats" class="list card">
       <li class="item item-icon-right">
         Lean body mass
-        <span>{{stats.lbm() | number:1}} pounds</span>
+        <span>{{calculateLBM(stats) | number:0}} pounds</span>
       </li>
       <li class="item item-icon-right">
         Maintenance calories
-        <span>{{user.maintenanceCalories() | number:0}} calories</span>
+        <span>{{maintenanceCalories(stats) | number:0}} calories</span>
       </li>
     </div>
   </ion-content>
