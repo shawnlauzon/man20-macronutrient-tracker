@@ -26,19 +26,32 @@ angular.module('man20-macnuttrk.services', [])
   }
 })
 
+/**
+ * Initialize data for the user here
+ */
 .factory('User', function() {
-  var stats = {
-    weight:         100,
-    percentBodyFat: 6.0,
 
-    lbm: function() {
-      return stats.weight * (100 - stats.percentBodyFat) / 100;
-    }
+  const defaultWeight = 170;
+  const defaultPercentFat = 15.0;
+
+  // Definine this outside the closure so maintenanceCalories() can access it
+  var calculateLBM = function(stats) {
+    return stats.weight * (100 - stats.percentBodyFat) / 100;
   };
 
-   return {
-    stats: stats,
-    maintenanceCalories: function() {
+  return {
+    loadStats: function() {
+      return {
+        weight: parseInt(window.localStorage['weight']) || defaultWeight,
+        percentBodyFat: parseFloat(window.localStorage['percentBodyFat']) || defaultPercentFat,
+      }
+    },
+    storeStats: function(stats) {
+      window.localStorage['weight'] = stats.weight;
+      window.localStorage['percentBodyFat'] = stats.percentBodyFat;
+    },
+    calculateLBM: calculateLBM,
+    maintenanceCalories: function(stats) {
       var maintenanceCaloricIntake = function() {
         if (stats.percentBodyFat <= 12) {
           return 17;
@@ -53,7 +66,7 @@ angular.module('man20-macnuttrk.services', [])
         }
       }
 
-      return stats.lbm() * maintenanceCaloricIntake();
+      return calculateLBM(stats) * maintenanceCaloricIntake(stats);
     }
   }
 });

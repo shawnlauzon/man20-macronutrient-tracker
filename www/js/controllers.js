@@ -12,6 +12,10 @@ angular.module('man20-macnuttrk.controllers', [])
 })
 
 .controller('StatsCtrl', function($scope, User) {
-  $scope.stats = User.stats;
-  $scope.user = User;
+
+  $scope.stats = User.loadStats();
+
+  $scope.storeStats = User.storeStats;
+  $scope.calculateLBM = User.calculateLBM;
+  $scope.maintenanceCalories = User.maintenanceCalories;
 });
