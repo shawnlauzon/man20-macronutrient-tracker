@@ -47,7 +47,27 @@ angular.module('man20-macnuttrk.services', [])
 })
 
 .factory('Food', function() {
-  
+
+})
+
+.factory('FoodChoices', function() {
+  return {
+    all: function() {
+      // var foodChoices = window.localStorage['foodChoices'];
+      // if (foodChoices) {
+      //   return angular.fromJson(foodChoices);
+      // }
+      // return [];
+      return [
+        { "id": 1,
+          "name": "olive oil" },
+        { "id": 2,
+          "name": "avocado" },
+        { "id": 3,
+          "name": "almonds" }
+      ];
+    }
+  }
 })
 
 .factory('Macronutrients', function() {
