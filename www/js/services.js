@@ -90,6 +90,18 @@ angular.module('man20-macnuttrk.services', [])
             } else {
               return 0.8 * lbm;
             }
+          case 3:
+            if (calendar.isWorkoutDay) {
+              return 1.5 * lbm;
+            } else {
+              return 1.25 * lbm;
+            }
+          case 4:
+            if (calendar.isWorkoutDay) {
+              return 1.5 * lbm;
+            } else {
+              return lbm;
+            }
         }
       };
       var carbs = function() {
@@ -120,6 +132,18 @@ angular.module('man20-macnuttrk.services', [])
             } else {
               return 0.3 * lbm;
             }
+          case 3:
+           if (calendar.isWorkoutDay) {
+              return lbm;
+            } else {
+              return 0.5 * lbm;
+            }
+          case 4:
+           if (calendar.isWorkoutDay) {
+              return lbm;
+            } else {
+              return 0.25 * lbm;
+            }
         }
       };
       var fat = function() {
@@ -137,6 +161,20 @@ angular.module('man20-macnuttrk.services', [])
               goalCalories = maintenanceCalories - 200;
             } else {
               goalCalories = maintenanceCalories - 600;
+            }
+            return (goalCalories - (protein() * 4) - (carbs() * 4)) / 9;
+          case 3:
+            if (calendar.isWorkoutDay) {
+              goalCalories = maintenanceCalories + 400;
+            } else {
+              goalCalories = maintenanceCalories - 200;
+            }
+            return (goalCalories - (protein() * 4) - (carbs() * 4)) / 9;
+          case 4:
+            if (calendar.isWorkoutDay) {
+              goalCalories = maintenanceCalories + 300;
+            } else {
+              goalCalories = maintenanceCalories - 400;
             }
             return (goalCalories - (protein() * 4) - (carbs() * 4)) / 9;
         }
