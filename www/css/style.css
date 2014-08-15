@@ -10,7 +10,8 @@
 .macnut-card-remaining {
   font-size: 2.5em;
   font-weight: bold;
-  padding: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
 }
 
 .macnut-card-total {
