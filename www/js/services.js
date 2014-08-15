@@ -76,17 +76,25 @@ angular.module('man20-macnuttrk.services', [])
 .factory('Macronutrients', function() {
   return {
     forPhase: function(calendar, lbm, maintenanceCalories) {
-      switch (calendar.phase) {
-        // **** Phase 1! ****
-        case 1:
-          var protein = function() {
+      var protein = function() {
+        switch (calendar.phase) {
+          case 1:
             if (calendar.isWorkoutDay) {
               return 0.8 * lbm;
             } else {
               return 0.7 * lbm;
             }
-          };
-          var carbs = function() {
+          case 2:
+            if (calendar.isWorkoutDay) {
+              return lbm;
+            } else {
+              return 0.8 * lbm;
+            }
+        }
+      };
+      var carbs = function() {
+        switch (calendar.phase) {
+          case 1:
             if (calendar.weekInPhase === 1 || calendar.weekInPhase === 2) {
               return 0;
             } else if (calendar.weekInPhase === 3) {
@@ -102,8 +110,17 @@ angular.module('man20-macnuttrk.services', [])
                 return 50;
               }
             }
-          };
-          var fat = function() {
+          case 2:
+           if (calendar.isWorkoutDay) {
+              return 0.75 * lbm;
+            } else {
+              return 0.3 * lbm;
+            }
+        }
+      };
+      var fat = function() {
+       switch (calendar.phase) {
+          case 1:
             var goalCalories;
             if (calendar.isWorkoutDay) {
               goalCalories = maintenanceCalories - 300;
@@ -111,44 +128,21 @@ angular.module('man20-macnuttrk.services', [])
               goalCalories = maintenanceCalories - 500;
             }
             return (goalCalories - (protein() * 4) - (carbs() * 4)) / 9;
-          };
-          return {
-            protein: protein,
-            fat: fat,
-            carbs: carbs
-          };
-        // **** Phase 2! ****  
-        case 2:
-          var protein = function() {
-            if (calendar.isWorkoutDay) {
-              return lbm;
-            } else {
-              return 0.8 * lbm;
-            }
-          }();
-          var carbs = function() {
-           if (calendar.isWorkoutDay) {
-              return 0.75 * lbm;
-            } else {
-              return 0.3 * lbm;
-            }
-          }();
-          var fat = function() {
-            var goalCalories;
+          case 2:
             if (calendar.isWorkoutDay) {
               goalCalories = maintenanceCalories - 200;
             } else {
               goalCalories = maintenanceCalories - 600;
             }
             return (goalCalories - (protein() * 4) - (carbs() * 4)) / 9;
-          }();
-          return {
-            protein: protein,
-            fat: fat,
-            carbs: carbs
-          };
-      }
-    }
+        }
+      };
+      return {
+        protein: protein,
+        fat: fat,
+        carbs: carbs
+      };
+     }
   }
 });
 
