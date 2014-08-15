@@ -48,12 +48,12 @@ angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man2
       }
     })
 
-    .state('tab.friends', {
-      url: '/friends',
+    .state('tab.food', {
+      url: '/food',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/tab-friends.html',
-          controller: 'FriendsCtrl'
+        'tab-food': {
+          templateUrl: 'templates/tab-food.html',
+          controller: 'FoodCtrl'
         }
       }
     })
