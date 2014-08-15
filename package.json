@@ -1,7 +1,7 @@
 {
-  "name": "ionic-project",
+  "name": "man20-macronutrient-tracker",
   "version": "1.0.0",
-  "description": "An Ionic project",
+  "description": "Man 2.0 Macronutrient tracker",
   "dependencies": {
     "gulp": "^3.5.6",
     "gulp-sass": "^0.7.1",
