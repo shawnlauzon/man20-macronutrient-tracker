@@ -96,7 +96,11 @@ angular.module('man20-macnuttrk.services', [])
         switch (calendar.phase) {
           case 1:
             if (calendar.weekInPhase === 1 || calendar.weekInPhase === 2) {
-              return 0;
+              if (calendar.isWorkoutDay) {
+                return 30;
+              } else {
+                return 0;
+              }
             } else if (calendar.weekInPhase === 3) {
               if (calendar.isWorkoutDay) {
                 return 75;
@@ -142,7 +146,7 @@ angular.module('man20-macnuttrk.services', [])
         fat: fat,
         carbs: carbs
       };
-     }
+    }
   }
 });
 
