@@ -3,7 +3,8 @@
 }
 
 .macnut-card-name {
-  font-size: 150%;
+  font-size: 1.5em;
+  padding-top: 0.6em;
 }
 
 .macnut-card-remaining {
