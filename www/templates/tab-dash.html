@@ -1,11 +1,11 @@
 <ion-view title="Dashboard">
   <ion-content class="has-header padding">
     <div id="dashboard-phase-info">
-      <span id="phase-text">Phase {{currentPhase}}, week {{currentWeekInPhase}}</span>
+      <span id="phase-text">Phase {{calendar.phase}}, week {{calendar.weekInPhase}}</span>
       <span id="workout-text">
         Workout day?
         <label class="toggle">
-           <input type="checkbox" ng-model="isWorkoutDay">
+           <input type="checkbox" ng-model="calendar.isWorkoutDay">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -16,22 +16,22 @@
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Protein</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.protein | number:0}}g</div>
-          <div class="macnut-card-total">out of {{macnuts.protein | number:0}}g</div>
+          <div class="macnut-card-remaining">{{macnutsRemaining.protein() | number:0}}g</div>
+          <div class="macnut-card-total">out of {{macnuts.protein() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Fat</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.fat | number:0}}g</div>
-          <div class="macnut-card-total">out of {{macnuts.fat | number:0}}g</div>
+          <div class="macnut-card-remaining">{{macnutsRemaining.fat() | number:0}}g</div>
+          <div class="macnut-card-total">out of {{macnuts.fat() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Carbs</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.carbs | number:0}}g</div>
-          <div class="macnut-card-total">out of {{macnuts.carbs | number:0}}g</div>
+          <div class="macnut-card-remaining">{{macnutsRemaining.carbs() | number:0}}g</div>
+          <div class="macnut-card-total">out of {{macnuts.carbs() | number:0}}g</div>
         </div>
       </div>
     </div>
