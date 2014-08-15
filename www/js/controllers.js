@@ -3,7 +3,7 @@ angular.module('man20-macnuttrk.controllers', [])
 .controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User) {
   $scope.calendar = {
     phase: 1,
-    weekInPhase: 3,
+    weekInPhase: 1,
     isWorkoutDay: true
   };
   $scope.phases = [ 1, 2, 3, 4];
@@ -19,47 +19,14 @@ angular.module('man20-macnuttrk.controllers', [])
 
   $ionicPopover.fromTemplateUrl('change-phase-popover.html', {
     scope: $scope,
-  }).then(function(phasePopover) {
-    $scope.phasePopover = phasePopover;
-  });
-  $scope.openPhasePopover = function($event) {
-    $scope.phasePopover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.phasePopover.hide();
-  };
-  // Execute action on hide popover
-  $scope.$on('phasePopover.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove popover
-  $scope.$on('weekPopover.removed', function() {
-    $scope.phasePopover.remove();
+  }).then(function(popover) {
+    $scope.phasePopover = popover;
   });
 
  $ionicPopover.fromTemplateUrl('change-week-popover.html', {
     scope: $scope,
-  }).then(function(weekPopover) {
-    $scope.weekPopover = weekPopover;
-  });
-  $scope.openWeekPopover = function($event) {
-    $scope.weekPopover.show($event);
-  };
-  $scope.closePopover = function() {
-    $scope.weekPopover.hide();
-  };
-  //Cleanup the popover when we're done with it!
-  $scope.$on('$destroy', function() {
-    $scope.phasePopover.remove();
-    $scope.weekPopover.remove();
-  });
-  // Execute action on hide popover
-  $scope.$on('weekPopover.hidden', function() {
-    // Execute action
-  });
-  // Execute action on remove popover
-  $scope.$on('weekPopover.removed', function() {
-    $scope.weekPopover.remove();
+  }).then(function(popover) {
+    $scope.weekPopover = popover;
   });
 })
 
