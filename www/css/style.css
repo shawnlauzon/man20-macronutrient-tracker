@@ -1,1 +1,32 @@
-/* Empty. Add your own CSS if you like */
+.macnut-card {
+  text-align: center;
+}
+
+.macnut-card-name {
+  font-size: 150%;
+}
+
+.macnut-card-remaining {
+  font-size: 2.5em;
+  font-weight: bold;
+  padding: 1em;
+}
+
+.macnut-card-total {
+  text-align: right;
+  padding: 0.2em;
+}
+
+#dashboard-phase-info {
+  margin-left: 1em;
+  margin-right: 1em;
+}
+
+#phase-text {
+  font-size: 2em;
+}
+
+#workout-text {
+  font-size: 1.3em;
+  float: right;
+}
