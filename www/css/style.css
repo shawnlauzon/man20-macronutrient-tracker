@@ -33,7 +33,38 @@
   float: right;
 }
 
-#foods-eaten li.item-divider {
+#food li {
+  display: -webkit-box;
+  display: -moz-box;
+  display: -ms-flexbox;
+  display: -webkit-flex;
+  display: flex;
+  padding-right: 102px; /* Reserve space for 2 buttons */
+}
+
+#macnut-header {
+  margin-left: 8em;
+}
+
+#food span.macnuts {
+  display: flex;
+}
+
+#food span.food-name {
+  min-width: 8em;
+}
+
+#food span.macnuts {
+  flex-grow: 2;
+}
+
+#food span.macnuts span {
+  display: flex;
+  flex-grow: 1;
+  justify-content: center;
+}
+
+#food-eaten-header {
   padding: 14px;
 }
 

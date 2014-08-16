@@ -1,5 +1,5 @@
 <ion-view title="Food">
-  <ion-content class="has-header">
+  <ion-content id="food" class="has-header">
     <ul id="food-choices" class="list">
       <li class="item item-divider">
         Foods available
@@ -12,13 +12,25 @@
         <button class="button ion-plus" ng-click="eatFood(food)">
       </li>
     </ul>
-    <ul id="foods-eaten" class="list">
-      <li class="item item-divider item-button-right">
+    <ul id="food-eaten" class="list">
+      <li id="food-eaten-header" class="item item-divider item-button-right">
         Food eaten today
         <button class="button ion-trash-a" ng-click="clearFood()">
       </li>
+      <li class="item item-divider">
+        <span id="macnut-header" class="macnuts">
+          <span>Protein</span>
+          <span>Fat</span>
+          <span>Carbs</span>
+        </span>
+      </li>
       <li class="item item-button-right" ng-repeat="food in foodEaten">
-        {{food.servings}} {{food.name}}
+        <span class="food-name">{{food.servings}} {{food.name}}</span>
+        <span class="macnuts">
+          <span>1g</span>
+          <span>2g</span>
+          <span>0g</span>
+        </span>
         <div class="buttons">
           <button class="button ion-plus" ng-click="addServing(food)">
           <button class="button ion-minus" ng-click="removeServing(food)">
