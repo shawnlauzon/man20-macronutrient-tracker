@@ -1,24 +1,23 @@
 <ion-view title="Dashboard">
   <ion-content class="has-header padding">
     <div id="dashboard-phase-info">
-      <span id="phase-text">
-        <button class="button button-med button-outline button-calm" ng-click="phasePopover.show($event)">
+      <span id="phase-buttons">
+        <button class="button button-outline button-calm" ng-click="phasePopover.show($event)">
           Phase {{calendar.phase}}
         </button>
-        <button class="button button-med button-outline button-calm" ng-click="weekPopover.show($event)">
+        <button class="button button-outline button-calm" ng-click="weekPopover.show($event)">
           Week {{calendar.weekInPhase}}
         </button>
       </span>
-      <span id="workout-text">
-        Workout day?
+      <span id="workout-button">
         <label class="toggle">
-           <input type="checkbox" ng-model="calendar.isWorkoutDay" ng-click="saveIsWorkoutDay()">
-           <div class="track">
-             <div class="handle"></div>
-           </div>
+          <input type="checkbox" ng-model="calendar.isWorkoutDay" ng-change="saveIsWorkoutDay()">
+          <div class="track">
+            <div class="handle"></div>
+          </div>
         </label>
+        <img src="img/exercise1.png"/>
       </span>
-    </div>
     <div class="row">
       <div class="col">
         <div class="card macnut-card">

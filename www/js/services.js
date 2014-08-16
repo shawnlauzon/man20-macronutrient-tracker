@@ -5,34 +5,34 @@ angular.module('man20-macnuttrk.services', [])
 .factory('User', function() {
 
   const defaultWeight = 170;
-  const defaultPercentFat = 15.0;
+  const defaultBodyFat = 15.0;
 
   // Definine this outside the closure so maintenanceCalories() can access it
   var calculateLBM = function(stats) {
-    return stats.weight * (100 - stats.percentBodyFat) / 100;
+    return stats.weight * (100 - stats.bodyFat) / 100;
   };
 
   return {
     loadStats: function() {
       return {
         weight: parseInt(window.localStorage['weight']) || defaultWeight,
-        percentBodyFat: parseFloat(window.localStorage['percentBodyFat']) || defaultPercentFat,
+        bodyFat: parseFloat(window.localStorage['bodyFat']) || defaultBodyFat,
       }
     },
     storeStats: function(stats) {
       window.localStorage['weight'] = stats.weight;
-      window.localStorage['percentBodyFat'] = stats.percentBodyFat;
+      window.localStorage['bodyFat'] = stats.percentBodyFat;
     },
     calculateLBM: calculateLBM,
     maintenanceCalories: function(stats) {
       var maintenanceCaloricIntake = function() {
-        if (stats.percentBodyFat <= 12) {
+        if (stats.bodyFat <= 12) {
           return 17;
-        } else if (stats.percentBodyFat <= 15) {
+        } else if (stats.bodyFat <= 15) {
           return 16;
-        } else if (stats.percentBodyFat <= 19) {
+        } else if (stats.bodyFat <= 19) {
           return 15;
-        } else if (stats.percentBodyFat <= 22) {
+        } else if (stats.bodyFat <= 22) {
           return 14;
         } else {
           return 13;
@@ -44,8 +44,18 @@ angular.module('man20-macnuttrk.services', [])
   }
 })
 
-.factory('Food', function() {
-
+.factory('FoodEaten', function() {
+  return {
+    all: function() {
+      return angular.fromJson(window.localStorage['foodEaten']) || [];
+    },
+    save: function(foodEaten) {
+      window.localStorage['foodEaten'] = angular.toJson(foodEaten);
+    },
+    clear: function() {
+      return window.localStorage['foodEaten'] = [];
+    }
+  }
 })
 
 .factory('FoodChoices', function() {

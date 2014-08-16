@@ -4,17 +4,15 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.calendar = {
     phase: parseInt(window.localStorage['phase']) || 1,
     weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
-    isWorkoutDay: function() {
-      var isWorkoutDay = window.localStorage['isWorkoutDay'];
-      if (isWorkoutDay === undefined) {
-        return true;
-      } else {
-        return isWorkoutDay;
-      }
-    }()
+    isWorkoutDay: (window.localStorage['isWorkoutDay'] === 'true' ? true : false)
   };
-  $scope.phases = [ 1, 2, 3, 4];
-  $scope.weeks = [1, 2, 3, 4];
+ 
+  var stats = User.loadStats();
+  var lbm = User.calculateLBM(stats);
+  var maintenanceCalories = User.maintenanceCalories(stats);
+  
+  $scope.macnuts = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
+  $scope.macnutsRemaining = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
 
   $scope.savePhase = function() {
     window.localStorage['phase'] = $scope.calendar.phase;
@@ -25,15 +23,10 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.saveIsWorkoutDay = function() {
     window.localStorage['isWorkoutDay'] = $scope.calendar.isWorkoutDay;
   };
-  
-  var stats = User.loadStats();
-  var lbm = User.calculateLBM(stats);
-  var maintenanceCalories = User.maintenanceCalories(stats);
-  
-  $scope.macnuts = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
 
-  $scope.macnutsRemaining = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
-
+  $scope.phases = [ 1, 2, 3, 4];
+  $scope.weeks = [1, 2, 3, 4];
+  
   $ionicPopover.fromTemplateUrl('change-phase-popover.html', {
     scope: $scope,
   }).then(function(popover) {
@@ -47,9 +40,38 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FoodCtrl', function($scope, Food, FoodChoices) {
+.controller('FoodCtrl', function($scope, FoodEaten, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
+  $scope.foodEaten = FoodEaten.all();
+
+  $scope.eatFood = function(food) {
+    var foodEaten = {
+      "name": food.name,
+      "servings": 1
+    };
+    $scope.foodEaten.push(foodEaten);
+    FoodEaten.save($scope.foodEaten);
+  };
+  $scope.addServing = function(food) {
+    food.servings = food.servings + 1;
+    FoodEaten.save($scope.foodEaten);
+  };
+  $scope.removeServing = function(food) {
+    if (food.servings <= 1) {
+      var index = $scope.foodEaten.indexOf(food);
+      if (index > -1) {
+        $scope.foodEaten.splice(index, 1);
+      }
+    } else {
+      food.servings = food.servings - 1;
+    }
+    FoodEaten.save($scope.foodEaten);
+  };
+  $scope.clearFood = function() {
+    $scope.foodEaten = FoodEaten.clear();
+  };
 })
+
 .controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
   $scope.food = FoodChoices.newFoodChoice();
   $scope.storeFood = function() {
@@ -74,7 +96,7 @@ angular.module('man20-macnuttrk.controllers', [])
     $scope.servingSizeUnitPopover = popover;
   });
 
-  $scope.servingSizeUnits = ['grams', 'mL', 'cups'];
+  $scope.servingSizeUnits = ['grams', 'mL', 'cups', 'pieces'];
 })
 
 .controller('StatsCtrl', function($scope, User) {
