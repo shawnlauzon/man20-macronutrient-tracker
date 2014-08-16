@@ -25,7 +25,6 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.saveIsWorkoutDay = function() {
     window.localStorage['isWorkoutDay'] = $scope.calendar.isWorkoutDay;
   };
-
   
   var stats = User.loadStats();
   var lbm = User.calculateLBM(stats);
@@ -51,9 +50,26 @@ angular.module('man20-macnuttrk.controllers', [])
 .controller('FoodCtrl', function($scope, Food, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
 })
-.controller('NewFoodCtrl', function($scope, Food, FoodChoices) {
+.controller('NewFoodCtrl', function($scope, $ionicPopover, FoodChoices) {
   $scope.food = {
+    "protein": 0,
+    "fat": 0,
+    "carbs": 0,
+    "servingSize": 0,
+    "servingSizeUnit": "grams"
   }
+  $scope.storeFood = function() {
+    FoodChoices.all().push($scope.food);
+    window.localStorage['foodChoices'] = angular.toJson($scope.food);
+  }
+
+  $ionicPopover.fromTemplateUrl('change-serving-size-unit-popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.servingSizeUnitPopover = popover;
+  });
+
+  $scope.servingSizeUnits = ['grams', 'mL', 'cup'];
 })
 
 .controller('StatsCtrl', function($scope, User) {

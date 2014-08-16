@@ -51,32 +51,29 @@ angular.module('man20-macnuttrk.services', [])
 .factory('FoodChoices', function() {
   return {
     all: function() {
-      // var foodChoices = window.localStorage['foodChoices'];
-      // if (foodChoices) {
-      //   return angular.fromJson(foodChoices);
-      // }
-      // return [];
-      return [
-        { "name": "Olive oil",
-          "protein": 0,
-          "fat": 14,
-          "carbs": 0,
-          "servingSize": 15,
-          "servingUnit": "mL" },
-        { "name": "Hass avocado",
-          "protein": 3,
-          "fat": 22,
-          "carbs": 13,
-          "servingSize": 150,
-          "servingUnit": "g" },
-        { "name": "Almonds",
-          "protein": 7,
-          "fat": 15,
-          "carbs": 5,
-          "servingSize": 28,
-          "servingUnit": "g" },
-      ];
+      return window.localStorage['foodChoices'] || [];
     },
+    //   return [
+    //     { "name": "Olive oil",
+    //       "protein": 0,
+    //       "fat": 14,
+    //       "carbs": 0,
+    //       "servingSize": 15,
+    //       "servingUnit": "mL" },
+    //     { "name": "Hass avocado",
+    //       "protein": 3,
+    //       "fat": 22,
+    //       "carbs": 13,
+    //       "servingSize": 150,
+    //       "servingUnit": "g" },
+    //     { "name": "Almonds",
+    //       "protein": 7,
+    //       "fat": 15,
+    //       "carbs": 5,
+    //       "servingSize": 28,
+    //       "servingUnit": "g" },
+    //   ];
+    // },
     save: function(food) {
 
     }

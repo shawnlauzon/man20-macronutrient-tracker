@@ -33,7 +33,15 @@
   float: right;
 }
 
-.input-unit {
-  padding-right: 3em;
-  text-align: left;
+#add-food label span.input-label {
+  width: 7em;
+}
+
+/*#add-food label input.range {
+  /*width: 90%;
+}
+*/
+#add-food input.number {
+  padding-right: 1em;
+  max-width: 5em;
 }
