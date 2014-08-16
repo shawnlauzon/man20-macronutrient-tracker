@@ -50,12 +50,22 @@ angular.module('man20-macnuttrk.controllers', [])
 .controller('FoodCtrl', function($scope, Food, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
 })
-.controller('NewFoodCtrl', function($scope, $ionicPopover, FoodChoices) {
+.controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
   $scope.food = FoodChoices.newFoodChoice();
   $scope.storeFood = function() {
-    var foodChoices = FoodChoices.all();
-    foodChoices.push($scope.food);
-    FoodChoices.save(foodChoices);
+    if ($scope.food.name) {
+      var foodChoices = FoodChoices.all();
+      foodChoices.push($scope.food);
+      FoodChoices.save(foodChoices);
+
+      var newFoodPopup = $ionicPopup.alert({
+        title: "New food added",
+        template: $scope.food.name
+      });
+      newFoodPopup.then(function(res) {
+        $scope.food = FoodChoices.newFoodChoice();
+      });
+    }
   }
 
   $ionicPopover.fromTemplateUrl('change-serving-size-unit-popover.html', {
