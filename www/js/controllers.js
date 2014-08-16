@@ -47,8 +47,16 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FoodCtrl', function($scope, Food, FoodChoices) {
+.controller('FoodCtrl', function($scope, FoodEaten, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
+  $scope.foodEaten = FoodEaten.all();
+
+  $scope.eatFood = function(food) {
+    var foodCopy = angular.copy(food);
+    foodCopy.servings = 1;
+    $scope.foodEaten.push(foodCopy);
+    FoodEaten.save($scope.foodEaten);
+  }
 })
 .controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
   $scope.food = FoodChoices.newFoodChoice();

@@ -1,12 +1,25 @@
 <ion-view title="Food">
   <ion-content class="has-header">
-    <ul class="list">
+    <ul id="food-choices" class="list">
+      <li class="item item-divider">
+        Foods available
+      </li>
       <a class="item ion-plus-round" href="#/tab/food/new">
         Add new
       </a>
-      <a class="item" ng-repeat="food in foodChoices | orderBy:+name" href="#/tab/food/{{food.id}}">
+      <li class="item item-button-left" ng-repeat="food in foodChoices | orderBy:+name">
         {{food.name}}
-      </a>
+        <button class="button ion-plus" ng-click="eatFood({{food}})">
+      </li>
     </ul>
+    <ul id="foods-eaten" class="list">
+      <li class="item item-divider">
+        Food eaten today
+      </li>
+      <li class="item" ng-repeat="food in foodEaten">
+        {{food.name}}
+      </li>
+    </ul>
+
   </ion-content>
 </ion-view>

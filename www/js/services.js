@@ -44,8 +44,15 @@ angular.module('man20-macnuttrk.services', [])
   }
 })
 
-.factory('Food', function() {
-
+.factory('FoodEaten', function() {
+  return {
+    all: function() {
+      return angular.fromJson(window.localStorage['foodEaten']) || [];
+    },
+    save: function(foodEaten) {
+      window.localStorage['foodEaten'] = angular.toJson(foodEaten);
+    }
+  }
 })
 
 .factory('FoodChoices', function() {
