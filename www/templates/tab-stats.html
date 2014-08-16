@@ -3,11 +3,13 @@
     <div id="personal-stats" class="list">
       <label class="item item-input">
         <span class="input-label">Current weight</span>
-        <input type="number" ng-model="stats.weight"><span class="item-note">pounds</span>
+        <input type="number" ng-model="stats.weight">
+        <span class="input-unit">pounds</span>
       </label>
       <label class="item item-input">
         <span class="input-label">Current percent body fat</span>
-        <input type="number" step="0.1" ng-model="stats.percentBodyFat">%
+        <input type="number" step="0.1" ng-model="stats.percentBodyFat">
+        <span class="input-unit">%</span>
       </label>
       <button class="button button-block button-positive" ng-click="storeStats(stats)">
         Update stats

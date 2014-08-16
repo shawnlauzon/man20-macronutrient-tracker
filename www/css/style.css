@@ -32,3 +32,12 @@
   font-size: 1.3em;
   float: right;
 }
+
+#add-food label span.input-label {
+  width: 7em;
+}
+
+#add-food input.number {
+  padding-right: 1em;
+  max-width: 5em;
+}

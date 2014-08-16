@@ -25,7 +25,6 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.saveIsWorkoutDay = function() {
     window.localStorage['isWorkoutDay'] = $scope.calendar.isWorkoutDay;
   };
-
   
   var stats = User.loadStats();
   var lbm = User.calculateLBM(stats);
@@ -48,12 +47,34 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FriendsCtrl', function($scope, Friends) {
-  $scope.friends = Friends.all();
+.controller('FoodCtrl', function($scope, Food, FoodChoices) {
+  $scope.foodChoices = FoodChoices.all();
 })
+.controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
+  $scope.food = FoodChoices.newFoodChoice();
+  $scope.storeFood = function() {
+    if ($scope.food.name) {
+      var foodChoices = FoodChoices.all();
+      foodChoices.push($scope.food);
+      FoodChoices.save(foodChoices);
 
-.controller('FriendDetailCtrl', function($scope, $stateParams, Friends) {
-  $scope.friend = Friends.get($stateParams.friendId);
+      var newFoodPopup = $ionicPopup.alert({
+        title: "New food added",
+        template: $scope.food.name
+      });
+      newFoodPopup.then(function(res) {
+        $scope.food = FoodChoices.newFoodChoice();
+      });
+    }
+  }
+
+  $ionicPopover.fromTemplateUrl('change-serving-size-unit-popover.html', {
+    scope: $scope,
+  }).then(function(popover) {
+    $scope.servingSizeUnitPopover = popover;
+  });
+
+  $scope.servingSizeUnits = ['grams', 'mL', 'cups'];
 })
 
 .controller('StatsCtrl', function($scope, User) {

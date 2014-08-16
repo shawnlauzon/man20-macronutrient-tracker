@@ -1,31 +1,4 @@
 angular.module('man20-macnuttrk.services', [])
-
-/**
- * A simple example service that returns some data.
- */
-.factory('Friends', function() {
-  // Might use a resource here that returns a JSON array
-
-  // Some fake testing data
-  var friends = [
-    { id: 0, name: 'Scruff McGruff' },
-    { id: 1, name: 'G.I. Joe' },
-    { id: 2, name: 'Miss Frizzle' },
-    { id: 3, name: 'Ash Ketchum' },
-    { id: 4, name: 'Shawn Lauzon' }
-  ];
-
-  return {
-    all: function() {
-      return friends;
-    },
-    get: function(friendId) {
-      // Simple index lookup
-      return friends[friendId];
-    }
-  }
-})
-
 /**
  * Initialize data for the user here
  */
@@ -68,6 +41,51 @@ angular.module('man20-macnuttrk.services', [])
 
       return calculateLBM(stats) * maintenanceCaloricIntake(stats);
     }
+  }
+})
+
+.factory('Food', function() {
+
+})
+
+.factory('FoodChoices', function() {
+  return {
+    all: function() {
+      return angular.fromJson(window.localStorage['foodChoices']) || [];
+    },
+    save: function(foodChoices) {
+      window.localStorage['foodChoices'] = angular.toJson(foodChoices);
+    },
+    newFoodChoice: function() {
+      return {
+        "protein": 0,
+        "fat": 0,
+        "carbs": 0,
+        "servingSize": 0,
+        "servingSizeUnit": "grams"
+      };
+    },
+    //   return [
+    //     { "name": "Olive oil",
+    //       "protein": 0,
+    //       "fat": 14,
+    //       "carbs": 0,
+    //       "servingSize": 15,
+    //       "servingUnit": "mL" },
+    //     { "name": "Hass avocado",
+    //       "protein": 3,
+    //       "fat": 22,
+    //       "carbs": 13,
+    //       "servingSize": 150,
+    //       "servingUnit": "g" },
+    //     { "name": "Almonds",
+    //       "protein": 7,
+    //       "fat": 15,
+    //       "carbs": 5,
+    //       "servingSize": 28,
+    //       "servingUnit": "g" },
+    //   ];
+    // },
   }
 })
 
