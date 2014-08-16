@@ -8,27 +8,28 @@
       <label class="item range range-positive">
         <span class="input-label">Protein</span>
         <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.protein">        
-<!-- <input class="macnut" type="number" ng-model="food.protein"> -->
         <span class="input-unit">{{food.protein}} grams<span>
       </label>
       <label class="item range range-positive">
         <span class="input-label">Fat</span>
         <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.fat">        
-        <!-- <input class="macnut" type="number" ng-model="food.fat"> -->
         <span class="input-unit">{{food.fat}} grams<span>
       </label>
       <label class="item range range-positive">
         <span class="input-label">Carbs</span>
         <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.carbs">        
-        <!-- <input class="macnut" type="number" ng-model="food.carbs"> -->
         <span class="input-unit">{{food.carbs}} grams<span>
       </label>
       <label class="item item-input">
         <span class="input-label">Serving size</span>
         <input class="number" type="number" ng-model="food.servingSize">
-        <button class="button button-small button-outline button-calm input-unit" ng-click="servingSizeUnitPopover.show($event)">
+      </label>
+      <label class="item item-input">
+        <span class="input-label">Serving unit</span>
+        <button class="item item-input button button-small button-outline button-calm" ng-click="servingSizeUnitPopover.show($event)">
           {{food.servingSizeUnit}}
         </button>
+        </span>
       </label>
       <button class="button button-block button-positive" ng-click="storeFood()">
         Add food
@@ -39,9 +40,6 @@
 
 <script id="change-serving-size-unit-popover.html" type="text/ng-template">
   <ion-popover-view>
-    <ion-header-bar>
-      <h1 class="title">Serving size unit</h1>
-    </ion-header-bar>
     <ion-content>
       <div class="list">
         <ion-radio ng-repeat="unit in servingSizeUnits" ng-value="unit" ng-model="food.servingSizeUnit">

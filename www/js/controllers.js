@@ -57,7 +57,7 @@ angular.module('man20-macnuttrk.controllers', [])
     "carbs": 0,
     "servingSize": 0,
     "servingSizeUnit": "grams"
-  }
+  };
   $scope.storeFood = function() {
     FoodChoices.all().push($scope.food);
     window.localStorage['foodChoices'] = angular.toJson($scope.food);
