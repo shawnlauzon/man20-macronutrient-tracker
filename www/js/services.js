@@ -51,7 +51,19 @@ angular.module('man20-macnuttrk.services', [])
 .factory('FoodChoices', function() {
   return {
     all: function() {
-      return window.localStorage['foodChoices'] || [];
+      return angular.fromJson(window.localStorage['foodChoices']) || [];
+    },
+    save: function(foodChoices) {
+      window.localStorage['foodChoices'] = angular.toJson(foodChoices);
+    },
+    newFoodChoice: function() {
+      return {
+        "protein": 0,
+        "fat": 0,
+        "carbs": 0,
+        "servingSize": 0,
+        "servingSizeUnit": "grams"
+      };
     },
     //   return [
     //     { "name": "Olive oil",
@@ -74,9 +86,6 @@ angular.module('man20-macnuttrk.services', [])
     //       "servingUnit": "g" },
     //   ];
     // },
-    save: function(food) {
-
-    }
   }
 })
 

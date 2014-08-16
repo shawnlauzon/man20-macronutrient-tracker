@@ -51,16 +51,11 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.foodChoices = FoodChoices.all();
 })
 .controller('NewFoodCtrl', function($scope, $ionicPopover, FoodChoices) {
-  $scope.food = {
-    "protein": 0,
-    "fat": 0,
-    "carbs": 0,
-    "servingSize": 0,
-    "servingSizeUnit": "grams"
-  };
+  $scope.food = FoodChoices.newFoodChoice();
   $scope.storeFood = function() {
-    FoodChoices.all().push($scope.food);
-    window.localStorage['foodChoices'] = angular.toJson($scope.food);
+    var foodChoices = FoodChoices.all();
+    foodChoices.push($scope.food);
+    FoodChoices.save(foodChoices);
   }
 
   $ionicPopover.fromTemplateUrl('change-serving-size-unit-popover.html', {
@@ -69,7 +64,7 @@ angular.module('man20-macnuttrk.controllers', [])
     $scope.servingSizeUnitPopover = popover;
   });
 
-  $scope.servingSizeUnits = ['grams', 'mL', 'cup'];
+  $scope.servingSizeUnits = ['grams', 'mL', 'cups'];
 })
 
 .controller('StatsCtrl', function($scope, User) {
