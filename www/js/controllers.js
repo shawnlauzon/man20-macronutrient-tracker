@@ -63,7 +63,17 @@ angular.module('man20-macnuttrk.controllers', [])
     food.servings = food.servings + 1;
     FoodEaten.save($scope.foodEaten);
   };
-
+  $scope.removeServing = function(food) {
+    if (food.servings <= 1) {
+      var index = $scope.foodEaten.indexOf(food);
+      if (index > -1) {
+        $scope.foodEaten.splice(index, 1);
+      }
+    } else {
+      food.servings = food.servings - 1;
+    }
+    FoodEaten.save($scope.foodEaten);
+  };
   $scope.clearFood = function() {
     $scope.foodEaten = FoodEaten.clear();
   };
