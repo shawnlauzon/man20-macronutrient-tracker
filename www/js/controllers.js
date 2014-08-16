@@ -2,12 +2,30 @@ angular.module('man20-macnuttrk.controllers', [])
 
 .controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User) {
   $scope.calendar = {
-    phase: 1,
-    weekInPhase: 1,
-    isWorkoutDay: true
+    phase: parseInt(window.localStorage['phase']) || 1,
+    weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
+    isWorkoutDay: function() {
+      var isWorkoutDay = window.localStorage['isWorkoutDay'];
+      if (isWorkoutDay === undefined) {
+        return true;
+      } else {
+        return isWorkoutDay;
+      }
+    }()
   };
   $scope.phases = [ 1, 2, 3, 4];
   $scope.weeks = [1, 2, 3, 4];
+
+  $scope.savePhase = function() {
+    window.localStorage['phase'] = $scope.calendar.phase;
+  };
+  $scope.saveWeek = function() {
+    window.localStorage['weekInPhase'] = $scope.calendar.weekInPhase;
+  };
+  $scope.saveIsWorkoutDay = function() {
+    window.localStorage['isWorkoutDay'] = $scope.calendar.isWorkoutDay;
+  };
+
   
   var stats = User.loadStats();
   var lbm = User.calculateLBM(stats);

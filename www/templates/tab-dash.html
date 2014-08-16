@@ -2,13 +2,17 @@
   <ion-content class="has-header padding">
     <div id="dashboard-phase-info">
       <span id="phase-text">
-        <button class="button button-large button-outline button-calm" ng-click="phasePopover.show($event)">Phase {{calendar.phase}}</button>
-        <button class="button button-large button-outline button-calm" ng-click="weekPopover.show($event)">Week {{calendar.weekInPhase}}</button>
+        <button class="button button-med button-outline button-calm" ng-click="phasePopover.show($event)">
+          Phase {{calendar.phase}}
+        </button>
+        <button class="button button-med button-outline button-calm" ng-click="weekPopover.show($event)">
+          Week {{calendar.weekInPhase}}
+        </button>
       </span>
       <span id="workout-text">
         Workout day?
         <label class="toggle">
-           <input type="checkbox" ng-model="calendar.isWorkoutDay">
+           <input type="checkbox" ng-model="calendar.isWorkoutDay" ng-click="saveIsWorkoutDay()">
            <div class="track">
              <div class="handle"></div>
            </div>
@@ -48,9 +52,9 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <ion-radio ng-repeat="phase in phases" ng-value="phase" ng-model="calendar.phase">
+        <ion-radio ng-repeat="phase in phases" ng-value="phase" ng-model="calendar.phase" ng-click="savePhase()">
           Phase {{phase}}
-        </ion-radio>
+        </ion-radio>      
       </div>
     </ion-content>
   </ion-popover-view>
@@ -63,7 +67,7 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <ion-radio ng-repeat="week in weeks" ng-value="week" ng-model="calendar.weekInPhase">
+        <ion-radio ng-repeat="week in weeks" ng-value="week" ng-model="calendar.weekInPhase" ng-click="saveWeek()">
           Week {{week}}
         </ion-radio>
       </div>
