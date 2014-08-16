@@ -32,3 +32,8 @@
   font-size: 1.3em;
   float: right;
 }
+
+.input-unit {
+  padding-right: 3em;
+  text-align: left;
+}
