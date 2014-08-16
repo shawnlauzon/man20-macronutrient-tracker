@@ -33,6 +33,10 @@ angular.module('man20-macnuttrk.controllers', [])
 .controller('FoodCtrl', function($scope, Food, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
 })
+.controller('NewFoodCtrl', function($scope, Food, FoodChoices) {
+  $scope.food = {
+  }
+})
 
 .controller('StatsCtrl', function($scope, User) {
 

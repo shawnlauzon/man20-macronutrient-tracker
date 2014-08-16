@@ -1,9 +1,12 @@
 <ion-view title="Food">
   <ion-content class="has-header">
-    <ion-list>
-      <ion-item ng-repeat="friend in friends" type="item-text-wrap" href="#/tab/friend/{{friend.id}}">
-        {{friend.name}}
-      </ion-item>
-    </ion-list>
+    <ul class="list">
+      <a class="item ion-plus-round" href="#/tab/food/new">
+        Add new
+      </a>
+      <a class="item" ng-repeat="food in foodChoices | orderBy:+name" href="#/tab/food/{{food.id}}">
+        {{food.name}}
+      </a>
+    </ul>
   </ion-content>
 </ion-view>

@@ -57,12 +57,21 @@ angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man2
         }
       }
     })
-    .state('tab.friend-detail', {
-      url: '/friend/:friendId',
+    .state('tab.new-food', {
+      url: '/food/new',
       views: {
-        'tab-friends': {
-          templateUrl: 'templates/friend-detail.html',
-          controller: 'FriendDetailCtrl'
+        'tab-food': {
+          templateUrl: 'templates/new-food.html',
+          controller: 'NewFoodCtrl'
+        }
+      }
+    })
+    .state('tab.food-detail', {
+      url: '/food/:foodId',
+      views: {
+        'tab-food': {
+          templateUrl: 'templates/food-detail.html',
+          controller: 'FoodDetailCtrl'
         }
       }
     })
