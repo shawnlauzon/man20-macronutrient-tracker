@@ -51,6 +51,9 @@ angular.module('man20-macnuttrk.services', [])
     },
     save: function(foodEaten) {
       window.localStorage['foodEaten'] = angular.toJson(foodEaten);
+    },
+    clear: function() {
+      return window.localStorage['foodEaten'] = [];
     }
   }
 })

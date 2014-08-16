@@ -33,6 +33,10 @@
   float: right;
 }
 
+#foods-eaten li.item-divider {
+  padding: 14px;
+}
+
 #add-food label span.input-label {
   width: 7em;
 }

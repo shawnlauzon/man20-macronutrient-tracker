@@ -13,8 +13,9 @@
       </li>
     </ul>
     <ul id="foods-eaten" class="list">
-      <li class="item item-divider">
+      <li class="item item-divider item-button-right">
         Food eaten today
+        <button class="button ion-trash-a" ng-click="clearFood()">
       </li>
       <li class="item" ng-repeat="food in foodEaten">
         {{food.name}}

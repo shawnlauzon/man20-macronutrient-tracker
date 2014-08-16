@@ -56,8 +56,13 @@ angular.module('man20-macnuttrk.controllers', [])
     foodCopy.servings = 1;
     $scope.foodEaten.push(foodCopy);
     FoodEaten.save($scope.foodEaten);
+  };
+
+  $scope.clearFood = function() {
+    $scope.foodEaten = FoodEaten.clear();
   }
 })
+
 .controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
   $scope.food = FoodChoices.newFoodChoice();
   $scope.storeFood = function() {
