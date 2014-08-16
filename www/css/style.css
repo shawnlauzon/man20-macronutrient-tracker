@@ -76,7 +76,8 @@
   width: 7em;
 }
 
-#add-food input.number {
+input.number {
   padding-right: 1em;
-  max-width: 5em;
+  margin-right: 1em;
+  max-width: 4em;
 }
