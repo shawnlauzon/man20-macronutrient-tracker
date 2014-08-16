@@ -1,5 +1,3 @@
-var user = 
-
 angular.module('man20-macnuttrk.services', [])
 
 /**
