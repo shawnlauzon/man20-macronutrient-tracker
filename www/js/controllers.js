@@ -16,9 +16,11 @@ angular.module('man20-macnuttrk.controllers', [])
 
   $scope.savePhase = function() {
     window.localStorage['phase'] = $scope.calendar.phase;
+    $scope.phasePopover.hide();
   };
   $scope.saveWeek = function() {
     window.localStorage['weekInPhase'] = $scope.calendar.weekInPhase;
+    $scope.weekPopover.hide();
   };
   $scope.saveIsWorkoutDay = function() {
     window.localStorage['isWorkoutDay'] = $scope.calendar.isWorkoutDay;

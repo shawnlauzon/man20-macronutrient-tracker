@@ -51,7 +51,7 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <ion-radio ng-repeat="phase in phases" ng-value="phase" ng-model="calendar.phase" ng-click="savePhase()">
+        <ion-radio ng-repeat="phase in phases" ng-value="phase" ng-model="calendar.phase" ng-change="savePhase()">
           Phase {{phase}}
         </ion-radio>      
       </div>
@@ -66,7 +66,7 @@
     </ion-header-bar>
     <ion-content>
       <div class="list">
-        <ion-radio ng-repeat="week in weeks" ng-value="week" ng-model="calendar.weekInPhase" ng-click="saveWeek()">
+        <ion-radio ng-repeat="week in weeks" ng-value="week" ng-model="calendar.weekInPhase" ng-change="saveWeek()">
           Week {{week}}
         </ion-radio>
       </div>
