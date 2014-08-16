@@ -24,11 +24,7 @@
   margin-right: 1em;
 }
 
-#phase-text {
-  font-size: 2em;
-}
-
-#workout-text {
+#workout-button {
   font-size: 1.3em;
   float: right;
 }
