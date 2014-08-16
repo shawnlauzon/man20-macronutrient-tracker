@@ -2,35 +2,33 @@
   <ion-content id="food" class="has-header">
     <ul id="food-choices" class="list">
       <li class="item item-divider">
-        Foods available
-      </li>
-      <a class="item ion-plus-round" href="#/tab/food/new">
-        Add new
-      </a>
-      <li class="item item-button-left" ng-repeat="food in foodChoices | orderBy:+name">
-        {{food.name}}
-        <button class="button ion-plus" ng-click="eatFood(food)">
-      </li>
-    </ul>
-    <ul id="food-eaten" class="list">
-      <li id="food-eaten-header" class="item item-divider item-button-right">
-        Food eaten today
-        <button class="button ion-trash-a" ng-click="clearFood()">
-      </li>
-      <li class="item item-divider">
+        <span>Foods available</span>
         <span id="macnut-header" class="macnuts">
           <span>Protein</span>
           <span>Fat</span>
           <span>Carbs</span>
         </span>
       </li>
+      <li class="item item-button-left" ng-repeat="food in foodChoices | orderBy:+name">
+        <span class="food-name">{{food.name}}</span>
+        <span class="macnuts">
+          <span>{{food.protein}}g</span>
+          <span>{{food.fat}}g</span>
+          <span>{{food.carbs}}g</span>
+        </span>
+        <button class="button ion-plus" ng-click="eatFood(food)">
+      </li>
+      <a class="item ion-plus-round" href="#/tab/food/new">
+        Add new
+      </a>
+    </ul>
+    <ul id="food-eaten" class="list">
+      <li id="food-eaten-header" class="item item-divider item-button-right">
+        Food eaten today
+        <button class="button ion-trash-a" ng-click="clearFood()">
+      </li>
       <li class="item item-button-right" ng-repeat="food in foodEaten">
         <span class="food-name">{{food.servings}} {{food.name}}</span>
-        <span class="macnuts">
-          <span>1g</span>
-          <span>2g</span>
-          <span>0g</span>
-        </span>
         <div class="buttons">
           <button class="button ion-plus" ng-click="addServing(food)">
           <button class="button ion-minus" ng-click="removeServing(food)">
