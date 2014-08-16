@@ -103,7 +103,7 @@ angular.module('man20-macnuttrk.controllers', [])
     $scope.servingSizeUnitPopover = popover;
   });
 
-  $scope.servingSizeUnits = ['grams', 'mL', 'cups'];
+  $scope.servingSizeUnits = ['grams', 'mL', 'cups', 'pieces'];
 })
 
 .controller('StatsCtrl', function($scope, User) {
