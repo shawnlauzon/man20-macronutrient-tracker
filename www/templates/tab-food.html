@@ -9,7 +9,7 @@
       </a>
       <li class="item item-button-left" ng-repeat="food in foodChoices | orderBy:+name">
         {{food.name}}
-        <button class="button ion-plus" ng-click="eatFood({{food}})">
+        <button class="button ion-plus" ng-click="eatFood(food)">
       </li>
     </ul>
     <ul id="foods-eaten" class="list">
@@ -17,8 +17,9 @@
         Food eaten today
         <button class="button ion-trash-a" ng-click="clearFood()">
       </li>
-      <li class="item" ng-repeat="food in foodEaten">
-        {{food.name}}
+      <li class="item item-button-left" ng-repeat="food in foodEaten">
+        {{food.servings}} {{food.name}}
+        <button class="button ion-plus" ng-click="addServing(food)">
       </li>
     </ul>
 

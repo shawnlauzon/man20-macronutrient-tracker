@@ -52,15 +52,21 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.foodEaten = FoodEaten.all();
 
   $scope.eatFood = function(food) {
-    var foodCopy = angular.copy(food);
-    foodCopy.servings = 1;
-    $scope.foodEaten.push(foodCopy);
+    var foodEaten = {
+      "name": food.name,
+      "servings": 1
+    };
+    $scope.foodEaten.push(foodEaten);
+    FoodEaten.save($scope.foodEaten);
+  };
+  $scope.addServing = function(food) {
+    food.servings = food.servings + 1;
     FoodEaten.save($scope.foodEaten);
   };
 
   $scope.clearFood = function() {
     $scope.foodEaten = FoodEaten.clear();
-  }
+  };
 })
 
 .controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
