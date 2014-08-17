@@ -66,15 +66,6 @@ angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man2
         }
       }
     })
-    // .state('tab.food-detail', {
-    //   url: '/food/:foodId',
-    //   views: {
-    //     'tab-food': {
-    //       templateUrl: 'templates/food-detail.html',
-    //       controller: 'FoodDetailCtrl'
-    //     }
-    //   }
-    // })
 
     .state('tab.stats', {
       url: '/stats',

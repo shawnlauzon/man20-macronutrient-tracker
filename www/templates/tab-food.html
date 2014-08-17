@@ -9,14 +9,14 @@
           <span>Carbs</span>
         </span>
       </li>
-      <li class="item item-button-left" ng-repeat="food in foodChoices | orderBy:+name">
-        <span class="food-name">{{food.name}}</span>
+      <li class="item item-button-left" ng-repeat="(name, details) in foodChoices">
+        <span class="food-name">{{name}}</span>
         <span class="macnuts">
-          <span>{{food.protein}}g</span>
-          <span>{{food.fat}}g</span>
-          <span>{{food.carbs}}g</span>
+          <span>{{details.protein}}g</span>
+          <span>{{details.fat}}g</span>
+          <span>{{details.carbs}}g</span>
         </span>
-        <button class="button ion-plus" ng-click="eatFood(food)">
+        <button class="button ion-plus" ng-click="eatFood(name)">
       </li>
       <a class="item ion-plus-round" href="#/tab/food/new">
         Add new
@@ -27,11 +27,11 @@
         Food eaten today
         <button class="button ion-trash-a" ng-click="clearFood()">
       </li>
-      <li class="item item-button-right" ng-repeat="food in foodEaten">
-        <span class="food-name">{{food.servings}} {{food.name}}</span>
+      <li class="item item-button-right" ng-repeat="(name, details) in foodEaten">
+        <span class="food-name">{{details.servings}} {{name}}</span>
         <div class="buttons">
-          <button class="button ion-plus" ng-click="addServing(food)">
-          <button class="button ion-minus" ng-click="removeServing(food)">
+          <button class="button ion-plus" ng-click="addServing(name)">
+          <button class="button ion-minus" ng-click="removeServing(name)">
         </div>
       </li>
     </ul>

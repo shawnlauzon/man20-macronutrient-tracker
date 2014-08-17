@@ -1,6 +1,6 @@
 angular.module('man20-macnuttrk.controllers', [])
 
-.controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User) {
+.controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User, FoodEaten, FoodChoices) {
   $scope.calendar = {
     phase: parseInt(window.localStorage['phase']) || 1,
     weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
@@ -10,9 +10,12 @@ angular.module('man20-macnuttrk.controllers', [])
   var stats = User.loadStats();
   var lbm = User.calculateLBM(stats);
   var maintenanceCalories = User.maintenanceCalories(stats);
+
+  var foodEaten = FoodEaten.all();
+  var foodChoices = FoodChoices.all();
   
   $scope.macnuts = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
-  $scope.macnutsRemaining = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
+  $scope.totals = FoodEaten.totals(foodEaten, foodChoices);
 
   $scope.savePhase = function() {
     window.localStorage['phase'] = $scope.calendar.phase;
@@ -46,24 +49,26 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.foodChoices = FoodChoices.all();
   $scope.foodEaten = FoodEaten.all();
 
-  $scope.eatFood = function(food) {
-    var foodEaten = {
-      "name": food.name,
-      "servings": 1
-    };
-    $scope.foodEaten.push(foodEaten);
+  $scope.eatFood = function(name) {
+    var value = $scope.foodEaten[name];
+    if (!value) {
+      value = {
+        "servings": 0
+      };
+      $scope.foodEaten[name] = value;
+    }
+    value.servings = value.servings + 1;
     FoodEaten.save($scope.foodEaten);
   };
-  $scope.addServing = function(food) {
+  $scope.addServing = function(name) {
+    var food = $scope.foodEaten[name];
     food.servings = food.servings + 1;
     FoodEaten.save($scope.foodEaten);
   };
-  $scope.removeServing = function(food) {
+  $scope.removeServing = function(name) {
+    var food = $scope.foodEaten[name];
     if (food.servings <= 1) {
-      var index = $scope.foodEaten.indexOf(food);
-      if (index > -1) {
-        $scope.foodEaten.splice(index, 1);
-      }
+      delete $scope.foodEaten[name];
     } else {
       food.servings = food.servings - 1;
     }
@@ -78,17 +83,26 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.food = FoodChoices.newFoodChoice();
   $scope.storeFood = function() {
     if ($scope.food.name) {
+      // Only save if a name was entered
+      var foodName = $scope.food.name;
+
+      // Remove the name property because that will be the key for our hash
+      delete $scope.food.name;
+
       var foodChoices = FoodChoices.all();
-      foodChoices.push($scope.food);
+      foodChoices[foodName] = $scope.food;
       FoodChoices.save(foodChoices);
 
       var newFoodPopup = $ionicPopup.alert({
         title: "New food added",
-        template: $scope.food.name
+        template: foodName
       });
       newFoodPopup.then(function(res) {
         $scope.food = FoodChoices.newFoodChoice();
       });
+      return true;
+    } else {
+      return false;
     }
   }
 
