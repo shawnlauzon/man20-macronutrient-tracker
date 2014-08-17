@@ -88,11 +88,9 @@ angular.module('man20-macnuttrk.services', [])
       return {
         "protein": 0,
         "fat": 0,
-        "carbs": 0,
-        "servingSize": 0,
-        "servingSizeUnit": "grams"
+        "carbs": 0
       };
-    },
+    }
   }
 })
 

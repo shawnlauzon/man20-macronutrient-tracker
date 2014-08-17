@@ -98,21 +98,11 @@ angular.module('man20-macnuttrk.controllers', [])
         template: foodName
       });
       newFoodPopup.then(function(res) {
+        // Reset for a new food entry
         $scope.food = FoodChoices.newFoodChoice();
       });
-      return true;
-    } else {
-      return false;
     }
   }
-
-  $ionicPopover.fromTemplateUrl('change-serving-size-unit-popover.html', {
-    scope: $scope,
-  }).then(function(popover) {
-    $scope.servingSizeUnitPopover = popover;
-  });
-
-  $scope.servingSizeUnits = ['grams', 'mL', 'cups', 'pieces'];
 })
 
 .controller('StatsCtrl', function($scope, User) {

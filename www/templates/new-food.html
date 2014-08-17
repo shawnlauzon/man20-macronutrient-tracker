@@ -20,33 +20,9 @@
         <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.carbs">        
         <span class="input-unit">{{food.carbs}} grams<span>
       </label>
-      <label class="item item-input">
-        <span class="input-label">Serving size</span>
-        <input class="number" type="number" ng-model="food.servingSize">
-      </label>
-      <label class="item item-input">
-        <span class="input-label">Serving unit</span>
-        <button class="item item-input button button-small button-outline button-calm" ng-click="servingSizeUnitPopover.show($event)">
-          {{food.servingSizeUnit}}
-        </button>
-        </span>
-      </label>
       <button class="button button-block button-positive" ng-click="storeFood()">
         Add food
       </button>
     </div>
   </ion-content>
 </ion-view>
-
-<script id="change-serving-size-unit-popover.html" type="text/ng-template">
-  <ion-popover-view>
-    <ion-content>
-      <div class="list">
-        <ion-radio ng-repeat="unit in servingSizeUnits" ng-value="unit" ng-model="food.servingSizeUnit">
-          {{unit}}
-        </ion-radio>      
-      </div>
-    </ion-content>
-  </ion-popover-view>
-</script>
-
