@@ -21,7 +21,7 @@ angular.module('man20-macnuttrk.services', [])
     },
     storeStats: function(stats) {
       window.localStorage['weight'] = stats.weight;
-      window.localStorage['bodyFat'] = stats.percentBodyFat;
+      window.localStorage['bodyFat'] = stats.bodyFat;
     },
     calculateLBM: calculateLBM,
     maintenanceCalories: function(stats) {
