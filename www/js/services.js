@@ -19,10 +19,6 @@ angular.module('man20-macnuttrk.services', [])
         bodyFat: parseFloat(window.localStorage['bodyFat']) || defaultBodyFat,
       }
     },
-    storeStats: function(stats) {
-      window.localStorage['weight'] = stats.weight;
-      window.localStorage['bodyFat'] = stats.bodyFat;
-    },
     calculateLBM: calculateLBM,
     maintenanceCalories: function(stats) {
       var maintenanceCaloricIntake = function() {

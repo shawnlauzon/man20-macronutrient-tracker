@@ -3,17 +3,14 @@
     <div id="personal-stats" class="list">
       <label class="item item-input">
         <span class="input-label">Current weight</span>
-        <input class="number" type="number" ng-model="stats.weight">
+        <input class="number" type="number" ng-model="stats.weight" ng-change="saveWeight()">
         <span class="input-unit">pounds</span>
       </label>
       <label class="item item-input">
         <span class="input-label">Current body fat</span>
-        <input class="number" type="number" step="0.1" ng-model="stats.bodyFat">
+        <input class="number" type="number" step="0.1" ng-model="stats.bodyFat" ng-change="saveBodyFat()">
         <span class="input-unit">%</span>
       </label>
-      <button class="button button-block button-positive" ng-click="storeStats(stats)">
-        Update stats
-      </button>
     </div>
     <div id="calculated-stats" class="list card">
       <li class="item item-icon-right">

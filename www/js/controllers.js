@@ -119,7 +119,13 @@ angular.module('man20-macnuttrk.controllers', [])
 
   $scope.stats = User.loadStats();
 
-  $scope.storeStats = User.storeStats;
+  $scope.saveWeight = function() {
+    window.localStorage['weight'] = $scope.stats.weight;
+  };
+  $scope.saveBodyFat = function() {
+    window.localStorage['bodyFat'] = $scope.stats.bodyFat;
+  };
+
   $scope.calculateLBM = User.calculateLBM;
   $scope.maintenanceCalories = User.maintenanceCalories;
 });
