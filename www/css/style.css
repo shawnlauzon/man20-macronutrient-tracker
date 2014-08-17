@@ -4,24 +4,19 @@
 
 .macnut-card-name {
   font-size: 1.5em;
-  padding-top: 0.6em;
+  padding-top: 0.4em;
 }
 
 .macnut-card-remaining {
   font-size: 2.5em;
   font-weight: bold;
-  padding-top: 1em;
-  padding-bottom: 1em;
+  padding-top: 0.5em;
+  padding-bottom: 0.5em;
 }
 
 .macnut-card-total {
   text-align: right;
-  padding: 0.2em;
-}
-
-#dashboard-phase-info {
-  margin-left: 1em;
-  margin-right: 1em;
+  padding: 0.4em;
 }
 
 #workout-button {
@@ -41,16 +36,13 @@
   font-weight: normal;
 }
 
-#food span.macnuts {
-  display: -webkit-flex;
-  display: flex;
-}
-
 #food span.food-name {
   min-width: 8em;
 }
 
 #food span.macnuts {
+  display: -webkit-flex;
+  display: flex;
   -webkit-flex-grow: 2;
   flex-grow: 2;
 }
@@ -68,8 +60,26 @@
   padding: 14px; /* Give space for button */
 }
 
-#add-food label span.input-label {
-  width: 7em;
+#add-food label {
+  padding: 6px 0 5px 16px; /* Otherwise range and text inputs have different sizes */
+}
+
+#add-food span.input-label {
+  -webkit-flex: 0;
+  flex: 0;
+  min-width: 4em;
+  width: auto;
+}
+
+#add-food label.range input {
+  -webkit-flex: 1;
+  flex: 1;
+  -webkit-flex-grow: 1;
+  flex-grow: 1;
+}
+
+#add-food label.range span.input-unit {
+  min-width: 2em; /* Space for 2 digit value */
 }
 
 input.number {
