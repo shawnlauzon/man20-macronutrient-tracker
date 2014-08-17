@@ -1,6 +1,6 @@
 angular.module('man20-macnuttrk.controllers', [])
 
-.controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User, FoodEaten) {
+.controller('DashCtrl', function($scope, $ionicPopover, Macronutrients, User, FoodEaten, FoodChoices) {
   $scope.calendar = {
     phase: parseInt(window.localStorage['phase']) || 1,
     weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
@@ -12,10 +12,10 @@ angular.module('man20-macnuttrk.controllers', [])
   var maintenanceCalories = User.maintenanceCalories(stats);
 
   var foodEaten = FoodEaten.all();
+  var foodChoices = FoodChoices.all();
   
   $scope.macnuts = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
-  // $scope.macnutsRemaining = Macronutrients.remaining($scope.calendar, lbm, maintenanceCalories, foodEaten);
-  $scope.macnutsRemaining = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
+  $scope.totals = FoodEaten.totals(foodEaten, foodChoices);
 
   $scope.savePhase = function() {
     window.localStorage['phase'] = $scope.calendar.phase;

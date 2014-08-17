@@ -22,21 +22,21 @@
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Protein</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.protein() | number:0}}g</div>
+          <div class="macnut-card-remaining">{{totals.protein() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.protein() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Fat</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.fat() | number:0}}g</div>
+          <div class="macnut-card-remaining">{{totals.fat() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.fat() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
         <div class="card macnut-card">
           <div class="macnut-card-name">Carbs</div>
-          <div class="macnut-card-remaining">{{macnutsRemaining.carbs() | number:0}}g</div>
+          <div class="macnut-card-remaining">{{totals.carbs() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.carbs() | number:0}}g</div>
         </div>
       </div>
