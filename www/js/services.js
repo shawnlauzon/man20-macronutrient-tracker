@@ -50,7 +50,7 @@ angular.module('man20-macnuttrk.services', [])
       window.localStorage['foodEaten'] = angular.toJson(foodEaten);
     },
     clear: function() {
-      return window.localStorage['foodEaten'] = null;
+      return window.localStorage['foodEaten'] = {};
     },
     totals: function(foodEaten, foodChoices) {
       var sum = function(macnut) {
