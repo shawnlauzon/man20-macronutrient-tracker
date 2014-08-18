@@ -20,21 +20,21 @@
       </span>
     <div class="row">
       <div class="col">
-        <div class="card macnut-card">
+        <div class="card macnut-card color-protein">
           <div class="macnut-card-name">Protein</div>
           <div class="macnut-card-remaining">{{totals.protein() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.protein() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
-        <div class="card macnut-card">
+        <div class="card macnut-card color-fat">
           <div class="macnut-card-name">Fat</div>
           <div class="macnut-card-remaining">{{totals.fat() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.fat() | number:0}}g</div>
         </div>
       </div>
       <div class="col">
-        <div class="card macnut-card">
+        <div class="card macnut-card color-carbs">
           <div class="macnut-card-name">Carbs</div>
           <div class="macnut-card-remaining">{{totals.carbs() | number:0}}g</div>
           <div class="macnut-card-total">out of {{macnuts.carbs() | number:0}}g</div>
@@ -53,7 +53,7 @@
       <div class="list">
         <ion-radio ng-repeat="phase in phases" ng-value="phase" ng-model="calendar.phase" ng-change="savePhase()">
           Phase {{phase}}
-        </ion-radio>      
+        </ion-radio>
       </div>
     </ion-content>
   </ion-popover-view>

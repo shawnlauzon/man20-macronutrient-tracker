@@ -1,40 +1,99 @@
 <ion-view title="Food">
-  <ion-content id="food" class="has-header">
-    <ul id="food-choices" class="list">
-      <li class="item item-divider">
-        <span>Foods available</span>
-        <span id="macnut-header" class="macnuts">
-          <span>Protein</span>
-          <span>Fat</span>
-          <span>Carbs</span>
-        </span>
+  <ion-content class="relative">
+    <div class="flow has-header">
+      <div class="button flow-item" ng-repeat="(name, details) in foodChoices" ng-click="eatFood(name)">
+        <div class="item-content">{{name}}</div>
+        <div class="color-bar-small">
+          <span class="color-macnut color-protein" style="width:{{details.protein * 3}}px"></span>
+          <span class="color-macnut color-fat" style="width:{{details.fat * 3}}px"></span>
+          <span class="color-macnut color-carbs" style="width:{{details.carbs * 3}}px"></span>
+        </div>
+      </div>
+      <div class="button flow-item" ng-click="showAddFoodModal()">
+        <div class="item-content icon-button ion-plus"></div>
+      </div>
+    </div>
+
+    <div class="list list-inset">
+      <li class="item color-bar-totals">
+        <div class="color-bar-total">
+          <span class="bar-target" style="width:{{target.protein() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.protein() | number:0}}g</span>
+          <span class="bar-eaten color-protein" style="width:{{foodEatenTotals.protein() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Protein {{foodEatenTotals.protein() | number:0}}g</span>
+          </span>
+        </div>
+        <div class="color-bar-total">
+          <span class="bar-target color-target-fat" style="width:{{target.fat() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.fat() | number:0}}g</span>
+          <span class="bar-eaten color-fat" style="width:{{foodEatenTotals.fat() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Fat {{foodEatenTotals.fat() | number:0}}g</span>
+          </span>
+        </div>
+        <div class="color-bar-total">
+          <span class="bar-target color-target-carbs" style="width:{{target.carbs() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.carbs() | number:0}}g</span>
+          <span class="bar-eaten color-carbs" style="width:{{foodEatenTotals.carbs() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Carbs {{foodEatenTotals.carbs() | number:0}}g</span>
+          </span>
+        </div>
       </li>
-      <li class="item item-button-left" ng-repeat="(name, details) in foodChoices">
-        <span class="food-name">{{name}}</span>
-        <span class="macnuts">
-          <span>{{details.protein}}g</span>
-          <span>{{details.fat}}g</span>
-          <span>{{details.carbs}}g</span>
-        </span>
-        <button class="button ion-plus" ng-click="eatFood(name)">
-      </li>
-      <a class="item ion-plus-round" href="#/tab/food/new">
-        Add new
-      </a>
-    </ul>
-    <ul id="food-eaten" class="list">
+    </div>
+
+    <ul id="food" class="list list-inset">
       <li id="food-eaten-header" class="item item-divider item-button-right">
         Food eaten today
         <button class="button ion-trash-a" ng-click="clearFood()">
       </li>
       <li class="item item-button-right" ng-repeat="(name, details) in foodEaten">
-        <span class="food-name">{{details.servings}} {{name}}</span>
+        <span class="food-servings">{{details.servings}}</span>
+        <span class="food-name">{{name}}</span>
         <div class="buttons">
           <button class="button ion-plus" ng-click="addServing(name)">
           <button class="button ion-minus" ng-click="removeServing(name)">
         </div>
       </li>
     </ul>
-
   </ion-content>
 </ion-view>
+
+<script id="add-food-modal.html" type="text/ng-template">
+  <ion-modal-view>
+    <div class="bar bar-header bar-stable">
+      <h1 class="title">Add food</h1>
+    </div>
+    <div id="add-food" class="list list-inset has-header">
+      <label class="item item-input">
+        <span class="input-label">Name</span>
+        <input type="text" ng-model="newFood.name">
+      </label>
+      <label class="item range range-positive">
+        <span class="input-label">Protein</span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.protein">
+        <span class="input-unit">{{newFood.protein}}g<span>
+      </label>
+      <label class="item range range-positive">
+        <span class="input-label">Fat</span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.fat">
+        <span class="input-unit">{{newFood.fat}}g<span>
+      </label>
+      <label class="item range range-positive">
+        <span class="input-label">Carbs</span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.carbs">
+        <span class="input-unit">{{newFood.carbs}}g<span>
+      </label>
+      <div class="button-bar modal-button-bar">
+        <button class="button button-stable" ng-click="cancelAddFood()">
+          Cancel
+        </button>
+        <button class="button button-positive" ng-click="storeFood()">
+          Add
+        </button>
+      </div>
+    </div>
+  </ion-modal-view>
+</script>
+
