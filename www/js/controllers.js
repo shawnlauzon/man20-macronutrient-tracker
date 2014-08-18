@@ -71,20 +71,20 @@ angular.module('man20-macnuttrk.controllers', [])
       };
       $scope.foodEaten[name] = value;
     }
-    value.servings = value.servings + 1;
+    value.servings = value.servings + 0.5;
     FoodEaten.save($scope.foodEaten);
   };
   $scope.addServing = function(name) {
     var food = $scope.foodEaten[name];
-    food.servings = food.servings + 1;
+    food.servings = food.servings + 0.5;
     FoodEaten.save($scope.foodEaten);
   };
   $scope.removeServing = function(name) {
     var food = $scope.foodEaten[name];
-    if (food.servings <= 1) {
+    if (food.servings <= 0.5) {
       delete $scope.foodEaten[name];
     } else {
-      food.servings = food.servings - 1;
+      food.servings = food.servings - 0.5;
     }
     FoodEaten.save($scope.foodEaten);
   };
