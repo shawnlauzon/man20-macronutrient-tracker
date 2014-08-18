@@ -71,7 +71,7 @@ angular.module('man20-macnuttrk.controllers', [])
       };
       $scope.foodEaten[name] = value;
     }
-    value.servings = value.servings + 0.5;
+    value.servings = value.servings + 1;
     FoodEaten.save($scope.foodEaten);
   };
 
