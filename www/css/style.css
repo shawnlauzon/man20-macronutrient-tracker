@@ -32,7 +32,36 @@
 }
 
 .flow-item {
-  width:6em;
+  width: 6em;
+  padding: 0 0;
+}
+
+.flow-item .item-content {
+  padding: 0.8em 0.3em 1.4em 0.3em;
+  line-height: 1em;
+}
+
+.horiz-color-bar {
+  /* Multiple lines should overlap, so need absolute */
+  position: absolute;
+  bottom: 0px;
+}
+
+.color-macnut {
+  height: 10px;
+  float: left;
+}
+
+.color-protein {
+  background-color: purple;
+}
+
+.color-fat {
+  background-color: yellow;
+}
+
+.color-carbs {
+  background-color: blue;
 }
 
 #food li {

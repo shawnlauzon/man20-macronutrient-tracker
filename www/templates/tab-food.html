@@ -3,8 +3,14 @@
     <div class="flow">
       <div class="button flow-item" ng-repeat="(name, details) in foodChoices" ng-click="eatFood(name)">
         <div class="item-content">{{name}}</div>
+        <div class="horiz-color-bar">
+          <span class="color-macnut color-protein" style="width:{{details.protein*3}}px"></span>
+          <span class="color-macnut color-fat" style="width:{{details.fat*3}}px"></span>
+          <span class="color-macnut color-carbs" style="width:{{details.carbs*3}}px"></span>
+        </div>
       </div>
-      <div class="button flow-item ion-plus" ng-click="showAddFoodModal()">
+      <div class="button flow-item" ng-click="showAddFoodModal()">
+        <div class="item-content icon-button ion-plus"></div>
       </div>
     </div>
 
