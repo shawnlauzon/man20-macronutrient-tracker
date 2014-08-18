@@ -11,12 +11,47 @@ angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man2
   $ionicPlatform.ready(function() {
     // Hide the accessory bar by default (remove this to show the accessory bar above the keyboard
     // for form inputs)
-    if(window.cordova && window.cordova.plugins.Keyboard) {
+    if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
     }
-    if(window.StatusBar) {
+    if (window.StatusBar) {
       // org.apache.cordova.statusbar required
       StatusBar.styleDefault();
+    }
+
+    var ad_units = {
+      ios : {
+          banner: 'ca-app-pub-2360299152800609/4898689976',
+          interstitial: 'ca-app-pub-2360299152800609/7572954779'
+      },
+      android : {
+          banner: 'ca-app-pub-2360299152800609/9468490376',
+          interstitial: 'ca-app-pub-2360299152800609/1945223578'
+      }
+    };
+
+    // select the right Ad Id according to platform
+    var admobId = ( /(android)/i.test(navigator.userAgent) ) ? ad_units.android : ad_units.ios;
+    
+    /** To dispable ads, comment this off, plus remove .has-ad class in style.css */
+    if (AdMob) {
+      var defaultOptions = {
+        // publisherId: admobid.banner,
+        // interstitialAdId: admobid.interstitial,
+        // adSize: 'SMART_BANNER',
+        // width: integer, // valid when set adSize 'CUSTOM'
+        // height: integer, // valid when set adSize 'CUSTOM'
+        position: AdMob.AD_POSITION.POS_XY,
+        x: 0,    // valid when set position to AdMob.AD_POSITION.POS_XY
+        y: 20,    // valid when set position to AdMob.AD_POSITION.POS_XY
+        isTesting: false, // false by default, set to true, to receiving test ad for testing purpose
+        // autoShow: true // auto show interstitial ad when loaded, set to false if prepare/show
+      };
+      AdMob.setOptions(defaultOptions);
+      // registerAdEvents();
+    
+      // display the banner at startup
+      AdMob.createBanner(admobId.banner);
     }
   });
 })
