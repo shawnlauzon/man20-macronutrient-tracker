@@ -60,6 +60,10 @@
   padding: 14px; /* Give space for button */
 }
 
+.modal-button-bar {
+  margin-top: 1em;
+}
+
 #add-food label {
   padding: 6px 0 5px 16px; /* Otherwise range and text inputs have different sizes */
 }

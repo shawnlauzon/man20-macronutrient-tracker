@@ -6,14 +6,14 @@ angular.module('man20-macnuttrk.controllers', [])
     weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
     isWorkoutDay: (window.localStorage['isWorkoutDay'] === 'true' ? true : false)
   };
- 
+
   var stats = User.loadStats();
   var lbm = User.calculateLBM(stats);
   var maintenanceCalories = User.maintenanceCalories(stats);
 
   var foodEaten = FoodEaten.all();
   var foodChoices = FoodChoices.all();
-  
+
   $scope.macnuts = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
   $scope.totals = FoodEaten.totals(foodEaten, foodChoices);
 
@@ -31,7 +31,7 @@ angular.module('man20-macnuttrk.controllers', [])
 
   $scope.phases = [ 1, 2, 3, 4];
   $scope.weeks = [1, 2, 3, 4];
-  
+
   $ionicPopover.fromTemplateUrl('change-phase-popover.html', {
     scope: $scope,
   }).then(function(popover) {
@@ -45,7 +45,7 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FoodCtrl', function($scope, FoodEaten, FoodChoices) {
+.controller('FoodCtrl', function($scope, $ionicModal, $ionicPopup, FoodEaten, FoodChoices) {
   $scope.foodChoices = FoodChoices.all();
   $scope.foodEaten = FoodEaten.all();
 
@@ -77,6 +77,40 @@ angular.module('man20-macnuttrk.controllers', [])
   $scope.clearFood = function() {
     $scope.foodEaten = FoodEaten.clear();
   };
+
+  var addFoodModal;
+  $scope.showAddFoodModal = function() {
+    $ionicModal.fromTemplateUrl('add-food-modal.html', {
+      scope: $scope,
+      focusFirstInput: true
+    }).then(function(modal) {
+      addFoodModal = modal;
+      $scope.newFood = FoodChoices.newFoodChoice();
+      addFoodModal.show();
+    });
+  }
+  $scope.cancelAddFood = function() {
+    addFoodModal.remove();
+  }
+
+  $scope.storeFood = function() {
+    if (!$scope.newFood.name) {
+      $ionicPopup.alert({
+        title: 'Cannot add food',
+        template: 'Please enter a name.'
+      });
+    } else {
+      var foodName = $scope.newFood.name;
+
+      // Remove the name property because that will be the key for our hash
+      delete $scope.newFood.name;
+
+      $scope.foodChoices[foodName] = $scope.newFood;
+      FoodChoices.save($scope.foodChoices);
+
+      addFoodModal.remove();
+    }
+  }
 })
 
 .controller('NewFoodCtrl', function($scope, $ionicPopover, $ionicPopup, FoodChoices) {
