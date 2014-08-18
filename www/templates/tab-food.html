@@ -1,12 +1,12 @@
 <ion-view title="Food">
-  <ion-content id="food" class="has-header">
-    <div class="flow">
+  <ion-content class="relative">
+    <div class="flow has-header">
       <div class="button flow-item" ng-repeat="(name, details) in foodChoices" ng-click="eatFood(name)">
         <div class="item-content">{{name}}</div>
-        <div class="horiz-color-bar">
-          <span class="color-macnut color-protein" style="width:{{details.protein*3}}px"></span>
-          <span class="color-macnut color-fat" style="width:{{details.fat*3}}px"></span>
-          <span class="color-macnut color-carbs" style="width:{{details.carbs*3}}px"></span>
+        <div class="color-bar-small">
+          <span class="color-macnut color-protein" style="width:{{details.protein * 3}}px"></span>
+          <span class="color-macnut color-fat" style="width:{{details.fat * 3}}px"></span>
+          <span class="color-macnut color-carbs" style="width:{{details.carbs * 3}}px"></span>
         </div>
       </div>
       <div class="button flow-item" ng-click="showAddFoodModal()">
@@ -14,7 +14,36 @@
       </div>
     </div>
 
-    <ul id="food-eaten" class="list">
+    <div class="list list-inset">
+      <li class="item color-bar-totals">
+        <div class="color-bar-total">
+          <span class="bar-target" style="width:{{target.protein() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.protein() | number:0}}g</span>
+          <span class="bar-eaten color-protein" style="width:{{foodEatenTotals.protein() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Protein {{foodEatenTotals.protein() | number:0}}g</span>
+          </span>
+        </div>
+        <div class="color-bar-total">
+          <span class="bar-target color-target-fat" style="width:{{target.fat() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.fat() | number:0}}g</span>
+          <span class="bar-eaten color-fat" style="width:{{foodEatenTotals.fat() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Fat {{foodEatenTotals.fat() | number:0}}g</span>
+          </span>
+        </div>
+        <div class="color-bar-total">
+          <span class="bar-target color-target-carbs" style="width:{{target.carbs() * scaleval | number:0}}px">
+          </span>
+          <span class="bar-target-label">{{target.carbs() | number:0}}g</span>
+          <span class="bar-eaten color-carbs" style="width:{{foodEatenTotals.carbs() * scaleval | number:0}}px">
+            <span class="bar-eaten-label">Carbs {{foodEatenTotals.carbs() | number:0}}g</span>
+          </span>
+        </div>
+      </li>
+    </div>
+
+    <ul id="food" class="list list-inset">
       <li id="food-eaten-header" class="item item-divider item-button-right">
         Food eaten today
         <button class="button ion-trash-a" ng-click="clearFood()">

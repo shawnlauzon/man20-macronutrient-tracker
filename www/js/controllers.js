@@ -45,9 +45,23 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FoodCtrl', function($scope, $ionicModal, $ionicPopup, FoodEaten, FoodChoices) {
+.controller('FoodCtrl', function($scope, $ionicModal, $ionicPopup, User, FoodEaten, FoodChoices, Macronutrients) {
   $scope.foodChoices = FoodChoices.all();
   $scope.foodEaten = FoodEaten.all();
+  $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
+
+  $scope.calendar = {
+    phase: parseInt(window.localStorage['phase']) || 1,
+    weekInPhase: parseInt(window.localStorage['weekInPhase']) || 1,
+    isWorkoutDay: (window.localStorage['isWorkoutDay'] === 'true' ? true : false)
+  };
+  var stats = User.loadStats();
+  var lbm = User.calculateLBM(stats);
+  var maintenanceCalories = User.maintenanceCalories(stats);
+  $scope.target = Macronutrients.forPhase($scope.calendar, lbm, maintenanceCalories);
+
+  $scope.scaleval = (document.documentElement.clientWidth - 20 - 60) /
+      Math.max($scope.target.protein(), $scope.target.fat(), $scope.target.carbs())
 
   $scope.eatFood = function(name) {
     var value = $scope.foodEaten[name];

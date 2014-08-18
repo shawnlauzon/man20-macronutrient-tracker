@@ -41,27 +41,99 @@
   line-height: 1em;
 }
 
-.horiz-color-bar {
+.relative {
+  position: relative;
+}
+
+.color-bar-small {
   /* Multiple lines should overlap, so need absolute */
   position: absolute;
   bottom: 0px;
+  height: 10px;
+  float: left;
+  left: 0px;
+  display: inline-table;
+}
+
+.color-bar-totals {
+  float: left;
+  display: inline-table;
+  height: 9em;
+  padding: 0;
+  width: 100%;
+  font-weight: bold;
+  font-size: 1em;
+}
+
+.color-bar-total {
+  height: 100%;
+}
+
+.bar-target {
+  position: relative; /* So z-index works */
+  display: inline-table;
+  border-style: solid;
+  border-width: 4px;
+  z-index: 1;
+  height: inherit;
+  padding-left: 0.5em;
+}
+
+.bar-target-label {
+  float: right;
+  padding-right: 0.5em;
+}
+
+.bar-eaten {
+  position: absolute;
+  left: 0;
+  margin-top: 4px;
+  height: inherit - 8px;
+  z-index: 0;
+}
+
+.bar-eaten-label {
+  display: block;
+  padding: 0.5em;
+  height: 100%;
+}
+
+.color-bar-total {
+  height: 3em;
+}
+
+.color-bar {
+  position: absolute;
+  float: inherit;
+}
+
+.color-target-protein {
+  border-color: #1c0e42;
+}
+
+.color-target-fat {
+  border-color: #3d5a0a;
+}
+
+.color-target-carbs {
+  border-color: #61330b;
 }
 
 .color-macnut {
-  height: 10px;
-  float: left;
+  height: inherit;
+  float: inherit;
 }
 
 .color-protein {
-  background-color: purple;
+  background-color: #a28cdf;
 }
 
 .color-fat {
-  background-color: yellow;
+  background-color: #c3ec78;
 }
 
 .color-carbs {
-  background-color: blue;
+  background-color: #febc81;
 }
 
 #food li {
