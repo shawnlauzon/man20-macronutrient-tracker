@@ -74,6 +74,7 @@ angular.module('man20-macnuttrk.controllers', [])
     value.servings = value.servings + 0.5;
     FoodEaten.save($scope.foodEaten);
   };
+
   $scope.addServing = function(name) {
     var food = $scope.foodEaten[name];
     food.servings = food.servings + 0.5;
@@ -90,6 +91,7 @@ angular.module('man20-macnuttrk.controllers', [])
   };
   $scope.clearFood = function() {
     $scope.foodEaten = FoodEaten.clear();
+    $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
   };
 
   var addFoodModal;
