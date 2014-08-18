@@ -24,6 +24,17 @@
   float: right;
 }
 
+.flow {
+  display: -webkit-flex;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+  flex-wrap: wrap;
+}
+
+.flow-item {
+  width:6em;
+}
+
 #food li {
   display: -webkit-flex;
   display: flex;

@@ -1,27 +1,13 @@
 <ion-view title="Food">
   <ion-content id="food" class="has-header">
-    <ul id="food-choices" class="list">
-      <li class="item item-divider">
-        <span>Foods available</span>
-        <span id="macnut-header" class="macnuts">
-          <span>Protein</span>
-          <span>Fat</span>
-          <span>Carbs</span>
-        </span>
-      </li>
-      <li class="item item-button-left" ng-repeat="(name, details) in foodChoices">
-        <span class="food-name">{{name}}</span>
-        <span class="macnuts">
-          <span>{{details.protein}}g</span>
-          <span>{{details.fat}}g</span>
-          <span>{{details.carbs}}g</span>
-        </span>
-        <button class="button ion-plus" ng-click="eatFood(name)">
-      </li>
-      <li class="item ion-plus-round" href="#/tab/food/new">
-        <button class="button ion-plus" ng-click="showAddFoodModal()">
-      </li>
-    </ul>
+    <div class="flow">
+      <div class="button flow-item" ng-repeat="(name, details) in foodChoices" ng-click="eatFood(name)">
+        <div class="item-content">{{name}}</div>
+      </div>
+      <div class="button flow-item ion-plus" ng-click="showAddFoodModal()">
+      </div>
+    </div>
+
     <ul id="food-eaten" class="list">
       <li id="food-eaten-header" class="item item-divider item-button-right">
         Food eaten today
