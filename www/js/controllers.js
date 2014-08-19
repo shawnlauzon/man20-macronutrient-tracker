@@ -101,7 +101,7 @@ angular.module('man20-macnuttrk.controllers', [])
       focusFirstInput: true
     }).then(function(modal) {
       foodModal = modal;
-      $scope.newFood = FoodChoices.newFoodChoice();
+      $scope.food = FoodChoices.newFoodChoice();
       $scope.modalFunction = 'Add';
       foodModal.show();
     });
@@ -111,29 +111,41 @@ angular.module('man20-macnuttrk.controllers', [])
       scope: $scope
     }).then(function(modal) {
       foodModal = modal;
-      $scope.newFood = $scope.foodChoices[name];
-      $scope.newFood.name = name;
+      $scope.food = $scope.foodChoices[name];
+      $scope.food.name = name;
       $scope.modalFunction = 'Update';
       foodModal.show();
     });
   };
+  $scope.deleteFood = function(name) {
+    var confirm = $ionicPopup.confirm({
+      title: 'Delete food',
+      template: 'Are you sure you want to delete ' + name + '?'
+    });
+    confirm.then(function(okPressed) {
+      if (okPressed) {
+        delete $scope.foodChoices[name];
+        foodModal.remove();
+      }
+    });
+  }
   $scope.cancelFood = function() {
     foodModal.remove();
   }
 
   $scope.storeFood = function() {
-    if (!$scope.newFood.name) {
+    if (!$scope.food.name) {
       $ionicPopup.alert({
         title: 'Cannot add food',
         template: 'Please enter a name.'
       });
     } else {
-      var foodName = $scope.newFood.name;
+      var foodName = $scope.food.name;
 
       // Remove the name property because that will be the key for our hash
-      delete $scope.newFood.name;
+      delete $scope.food.name;
 
-      $scope.foodChoices[foodName] = $scope.newFood;
+      $scope.foodChoices[foodName] = $scope.food;
       FoodChoices.save($scope.foodChoices);
 
       foodModal.remove();

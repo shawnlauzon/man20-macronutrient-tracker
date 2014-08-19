@@ -65,26 +65,27 @@
   <ion-modal-view>
     <div class="bar bar-header bar-stable">
       <h1 class="title">{{modalFunction}} food</h1>
+      <button class="button button-icon icon ion-trash-a" ng-click="deleteFood(food.name)"></button>
     </div>
     <div id="add-food" class="list list-inset has-header">
       <label class="item item-input">
         <span class="input-label">Name</span>
-        <input type="text" ng-model="newFood.name">
+        <input type="text" ng-model="food.name">
       </label>
       <label class="item range range-positive">
         <span class="input-label">Protein</span>
-        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.protein">
-        <span class="input-unit">{{newFood.protein}}g<span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.protein">
+        <span class="input-unit">{{food.protein}}g<span>
       </label>
       <label class="item range range-positive">
         <span class="input-label">Fat</span>
-        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.fat">
-        <span class="input-unit">{{newFood.fat}}g<span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.fat">
+        <span class="input-unit">{{food.fat}}g<span>
       </label>
       <label class="item range range-positive">
         <span class="input-label">Carbs</span>
-        <input class="range" type="range" name="volume" min="0" max="25" ng-model="newFood.carbs">
-        <span class="input-unit">{{newFood.carbs}}g<span>
+        <input class="range" type="range" name="volume" min="0" max="25" ng-model="food.carbs">
+        <span class="input-unit">{{food.carbs}}g<span>
       </label>
       <div class="button-bar modal-button-bar">
         <button class="button button-stable" ng-click="cancelFood()">
