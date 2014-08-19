@@ -29,6 +29,7 @@
   display: flex;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
+  margin: 20px 10px;
 }
 
 .flow-item {

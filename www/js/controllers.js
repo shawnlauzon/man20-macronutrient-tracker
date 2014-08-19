@@ -90,8 +90,16 @@ angular.module('man20-macnuttrk.controllers', [])
     FoodEaten.save($scope.foodEaten);
   };
   $scope.clearFood = function() {
-    $scope.foodEaten = FoodEaten.clear();
-    $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
+    var confirm = $ionicPopup.confirm({
+      title: 'Clear food',
+      template: 'Are you sure you want to clear all food for today?'
+    });
+    confirm.then(function(okPressed) {
+      if (okPressed) {
+        $scope.foodEaten = FoodEaten.clear();
+        $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
+      }
+    });
   };
 
   var foodModal;
