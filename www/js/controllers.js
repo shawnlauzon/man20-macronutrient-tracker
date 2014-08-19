@@ -113,9 +113,12 @@ angular.module('man20-macnuttrk.controllers', [])
       $scope.modalFunction = 'Add';
       foodModal.show();
     });
-  }
+  };
+
+  var originalName;
   $scope.editFood = function(name) {
-   $ionicModal.fromTemplateUrl('food-modal.html', {
+    originalName = name;
+    $ionicModal.fromTemplateUrl('food-modal.html', {
       scope: $scope
     }).then(function(modal) {
       foodModal = modal;
@@ -152,6 +155,18 @@ angular.module('man20-macnuttrk.controllers', [])
 
       // Remove the name property because that will be the key for our hash
       delete $scope.food.name;
+
+      if (originalName != foodName) {
+        // Name was changed; delete old references and replace with new
+        delete $scope.foodChoices[originalName];
+
+        var ateChanged = $scope.foodEaten[originalName];
+        if (ateChanged) {
+          delete $scope.foodEaten[originalName];
+          $scope.foodEaten[foodName] = ateChanged;
+          FoodEaten.save($scope.foodEaten);
+        }
+      }
 
       $scope.foodChoices[foodName] = $scope.food;
       FoodChoices.save($scope.foodChoices);
