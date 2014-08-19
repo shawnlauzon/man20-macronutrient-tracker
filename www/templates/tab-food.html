@@ -1,7 +1,8 @@
 <ion-view title="Food">
   <ion-content class="relative">
-    <div class="flow has-header">
-      <div class="button flow-item" ng-repeat="(name, details) in foodChoices" ng-click="eatFood(name)">
+    <div id="foodChoices" class="flow has-header">
+      <div class="button flow-item food-choice" ng-repeat="(name, details) in foodChoices"
+          ng-click="eatFood(name)" mnt-hold="editFood(name)">
         <div class="item-content">{{name}}</div>
         <div class="color-bar-small">
           <span class="color-macnut color-protein" style="width:{{details.protein * 3}}px"></span>
@@ -9,7 +10,7 @@
           <span class="color-macnut color-carbs" style="width:{{details.carbs * 3}}px"></span>
         </div>
       </div>
-      <div class="button flow-item" ng-click="showAddFoodModal()">
+      <div class="button flow-item" ng-click="addFood()">
         <div class="item-content icon-button ion-plus"></div>
       </div>
     </div>
@@ -60,10 +61,10 @@
   </ion-content>
 </ion-view>
 
-<script id="add-food-modal.html" type="text/ng-template">
+<script id="food-modal.html" type="text/ng-template">
   <ion-modal-view>
     <div class="bar bar-header bar-stable">
-      <h1 class="title">Add food</h1>
+      <h1 class="title">{{modalFunction}} food</h1>
     </div>
     <div id="add-food" class="list list-inset has-header">
       <label class="item item-input">
@@ -86,11 +87,11 @@
         <span class="input-unit">{{newFood.carbs}}g<span>
       </label>
       <div class="button-bar modal-button-bar">
-        <button class="button button-stable" ng-click="cancelAddFood()">
+        <button class="button button-stable" ng-click="cancelFood()">
           Cancel
         </button>
         <button class="button button-positive" ng-click="storeFood()">
-          Add
+          {{modalFunction}}
         </button>
       </div>
     </div>

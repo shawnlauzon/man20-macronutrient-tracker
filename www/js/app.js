@@ -5,7 +5,8 @@
 // the 2nd parameter is an array of 'requires'
 // 'man20-macnuttrk.services' is found in services.js
 // 'man20-macnuttrk.controllers' is found in controllers.js
-angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man20-macnuttrk.services'])
+angular.module('man20-macnuttrk', ['ionic', 'man20-macnuttrk.controllers', 'man20-macnuttrk.services',
+  'man20-macnuttrk.directives'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {

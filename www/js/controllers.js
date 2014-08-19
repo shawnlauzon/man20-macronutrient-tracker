@@ -45,7 +45,7 @@ angular.module('man20-macnuttrk.controllers', [])
   });
 })
 
-.controller('FoodCtrl', function($scope, $ionicModal, $ionicPopup, User, FoodEaten, FoodChoices, Macronutrients) {
+.controller('FoodCtrl', function($scope, $ionicGesture, $ionicModal, $ionicPopup, User, FoodEaten, FoodChoices, Macronutrients) {
   $scope.foodChoices = FoodChoices.all();
   $scope.foodEaten = FoodEaten.all();
   $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
@@ -94,19 +94,31 @@ angular.module('man20-macnuttrk.controllers', [])
     $scope.foodEatenTotals = FoodEaten.totals($scope.foodEaten, $scope.foodChoices);
   };
 
-  var addFoodModal;
-  $scope.showAddFoodModal = function() {
-    $ionicModal.fromTemplateUrl('add-food-modal.html', {
+  var foodModal;
+  $scope.addFood = function() {
+    $ionicModal.fromTemplateUrl('food-modal.html', {
       scope: $scope,
       focusFirstInput: true
     }).then(function(modal) {
-      addFoodModal = modal;
+      foodModal = modal;
       $scope.newFood = FoodChoices.newFoodChoice();
-      addFoodModal.show();
+      $scope.modalFunction = 'Add';
+      foodModal.show();
     });
   }
-  $scope.cancelAddFood = function() {
-    addFoodModal.remove();
+  $scope.editFood = function(name) {
+   $ionicModal.fromTemplateUrl('food-modal.html', {
+      scope: $scope
+    }).then(function(modal) {
+      foodModal = modal;
+      $scope.newFood = $scope.foodChoices[name];
+      $scope.newFood.name = name;
+      $scope.modalFunction = 'Update';
+      foodModal.show();
+    });
+  };
+  $scope.cancelFood = function() {
+    foodModal.remove();
   }
 
   $scope.storeFood = function() {
@@ -124,7 +136,7 @@ angular.module('man20-macnuttrk.controllers', [])
       $scope.foodChoices[foodName] = $scope.newFood;
       FoodChoices.save($scope.foodChoices);
 
-      addFoodModal.remove();
+      foodModal.remove();
     }
   }
 })
