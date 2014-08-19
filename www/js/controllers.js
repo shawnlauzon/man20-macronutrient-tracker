@@ -137,6 +137,11 @@ angular.module('man20-macnuttrk.controllers', [])
       if (okPressed) {
         delete $scope.foodChoices[name];
         FoodChoices.save($scope.foodChoices);
+
+        if ($scope.foodEaten[name]) {
+          delete $scope.foodEaten[name];
+          FoodEaten.save($scope.foodEaten);
+        };
         foodModal.remove();
       }
     });
