@@ -204,7 +204,9 @@
 }
 
 input.number {
-  padding-right: 1em;
-  margin-right: 1em;
-  max-width: 7em;
+  max-width: 5em;
+}
+
+#calculated-stats span {
+  float: right;
 }
