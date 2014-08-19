@@ -29,7 +29,6 @@
   display: flex;
   -webkit-flex-wrap: wrap;
   flex-wrap: wrap;
-  margin: 20px 10px;
 }
 
 .flow-item {
@@ -40,10 +39,6 @@
 .flow-item .item-content {
   padding: 0.8em 0.3em 1.4em 0.3em;
   line-height: 1em;
-}
-
-.relative {
-  position: relative;
 }
 
 .color-bar-small {

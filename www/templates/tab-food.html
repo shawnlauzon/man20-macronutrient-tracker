@@ -1,6 +1,6 @@
 <ion-view title="Food">
-  <ion-content class="relative">
-    <div id="foodChoices" class="flow has-header">
+  <ion-content class="has-header padding">
+    <div id="foodChoices" class="flow">
       <div class="button flow-item food-choice" ng-repeat="(name, details) in foodChoices"
           ng-click="eatFood(name)" mnt-hold="editFood(name)">
         <div class="item-content">{{name}}</div>
