@@ -1,7 +1,7 @@
 {
   "name": "man20-macronutrient-tracker",
   "version": "1.0.0",
-  "description": "Man 2.0 Macronutrient tracker",
+  "description": "Man 2.0 Food tracker",
   "repository": {
     "type": "git",
     "url": "https://github.com/shawnlauzon/man20-macronutrient-tracker.git"
